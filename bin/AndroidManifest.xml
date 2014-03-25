@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.plannermockup.MainActivity"
+            android:name="com.example.plannermockup.login.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.plannermockup.ScheduleListActivity"/>
-        <activity android:name="com.example.plannermockup.EventDetailActivity"/>
+        <activity android:name="com.example.plannermockup.schedepagertab.SchedulePagerTabActivity"/>
+        <activity android:name="com.example.plannermockup.eventdetail.EventDetailActivity"/>
+        <activity android:name="com.example.plannermockup.addevent.AddNewEventActivity"></activity>
     </application>
 
 </manifest>

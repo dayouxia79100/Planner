@@ -8,5 +8,7 @@
     <string name="action_settings">Settings</string>
     <string name="are_you_going">Are you going?</string>
     <string name="yes_going">Yes I am going</string>
+    
+    <string name="add_event">Add</string>
 
 </resources>

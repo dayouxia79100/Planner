@@ -18,6 +18,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import com.example.plannermockup.eventdetail.EventDetailActivity;
+import com.example.plannermockup.model.Event;
+import com.example.plannermockup.model.EventsSingleton;
+
 /**
  * Created by dayouxia on 2/13/14.
  */
