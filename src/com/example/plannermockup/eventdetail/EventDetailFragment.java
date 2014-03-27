@@ -29,7 +29,6 @@ import android.widget.Button;
 public class EventDetailFragment extends Fragment {
 
 
-    private GoogleMap googleMap;
     private Button mWhosGoingButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,51 +43,6 @@ public class EventDetailFragment extends Fragment {
                 startActivity(i);
             }
         });
-
-
-        if(googleMap == null) {
-            googleMap = ((SupportMapFragment) getFragmentManager().findFragmentById(
-                    R.id.map)).getMap();
-        }
-        if(googleMap != null){
-            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            // googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-            // googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-            // googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-            // googleMap.setMapType(GoogleMap.MAP_TYPE_NONE);
-
-            // Showing / hiding your current location
-            googleMap.setMyLocationEnabled(true);
-
-            // Enable / Disable zooming controls
-            googleMap.getUiSettings().setZoomControlsEnabled(false);
-
-            // Enable / Disable my location button
-            googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-
-            // Enable / Disable Compass icon
-            googleMap.getUiSettings().setCompassEnabled(true);
-
-            // Enable / Disable Rotate gesture
-            googleMap.getUiSettings().setRotateGesturesEnabled(true);
-
-            // Enable / Disable zooming functionality
-            googleMap.getUiSettings().setZoomGesturesEnabled(true);
-        }
-
-        MarkerOptions marker = new MarkerOptions().position(
-                new LatLng(39.9833, -82.9833))
-                .title("YOLO SWAG");
-
-
-        googleMap.addMarker(marker);
-
-
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(marker.getPosition()).zoom(15).build();
-
-        googleMap.animateCamera(CameraUpdateFactory
-                .newCameraPosition(cameraPosition));
 
 
 

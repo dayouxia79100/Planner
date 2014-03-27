@@ -49,12 +49,6 @@
             android:text="Address"/>
         </LinearLayout>
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        />
 
     <TextView
         android:layout_width="wrap_content"
