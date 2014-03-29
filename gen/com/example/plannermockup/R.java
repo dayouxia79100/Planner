@@ -222,8 +222,8 @@ containing a value of this type.
         public static final int ic_plusone_tall_off_client=0x7f02001d;
     }
     public static final class id {
-        public static final int action_settings=0x7f050015;
-        public static final int add_new_event=0x7f050014;
+        public static final int action_settings=0x7f050019;
+        public static final int add_new_event=0x7f050018;
         public static final int container=0x7f050006;
         public static final int email_editText=0x7f050010;
         public static final int event_time_textview=0x7f050008;
@@ -232,13 +232,17 @@ containing a value of this type.
         public static final int hybrid=0x7f050004;
         public static final int imageView=0x7f05000f;
         public static final int login_button=0x7f050012;
+        public static final int name_editText=0x7f050014;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int pager=0x7f050013;
+        public static final int pager=0x7f050017;
         public static final int partyAddress_textView=0x7f05000e;
         public static final int partyName_textView=0x7f05000d;
+        public static final int password_confirm_editText=0x7f050015;
         public static final int password_editText=0x7f050011;
+        public static final int phone_editText=0x7f050016;
         public static final int satellite=0x7f050002;
+        public static final int signup_button=0x7f050013;
         public static final int terrain=0x7f050003;
         public static final int thigns_to_bring_button=0x7f05000a;
         public static final int time_textView=0x7f05000b;
@@ -255,16 +259,17 @@ containing a value of this type.
         public static final int fragment_event_item=0x7f030003;
         public static final int fragment_events=0x7f030004;
         public static final int fragment_login=0x7f030005;
-        public static final int pager=0x7f030006;
+        public static final int fragment_signup=0x7f030006;
+        public static final int pager=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
     }
     public static final class string {
-        public static final int action_settings=0x7f06001e;
-        public static final int add_event=0x7f060021;
-        public static final int app_name=0x7f06001a;
-        public static final int are_you_going=0x7f06001f;
+        public static final int action_settings=0x7f06001f;
+        public static final int add_event=0x7f060029;
+        public static final int app_name=0x7f06001b;
+        public static final int are_you_going=0x7f060020;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
          */
@@ -359,10 +364,22 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
-        public static final int title_section1=0x7f06001b;
-        public static final int title_section2=0x7f06001c;
-        public static final int title_section3=0x7f06001d;
-        public static final int yes_going=0x7f060020;
+        public static final int email_exist_alert_message=0x7f060027;
+        public static final int email_exist_alert_title=0x7f060026;
+        public static final int info_not_complete_alert_message=0x7f060023;
+        /**  sign up 
+         */
+        public static final int info_not_complete_alert_title=0x7f060022;
+        /**  Location client code resources (prefix with location_client) 
+         */
+        public static final int location_client_powered_by_google=0x7f06001a;
+        public static final int ok=0x7f060028;
+        public static final int password_not_matching_alert_message=0x7f060025;
+        public static final int password_not_matching_alert_title=0x7f060024;
+        public static final int title_section1=0x7f06001c;
+        public static final int title_section2=0x7f06001d;
+        public static final int title_section3=0x7f06001e;
+        public static final int yes_going=0x7f060021;
     }
     public static final class style {
         /** 
