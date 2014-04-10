@@ -45,7 +45,7 @@ public class SignupFragment extends Fragment{
 	public EditText inputEmail;
 	public EditText inputPhone;
     private static String processing_message = "Signing up...";
-    private static String url_create_user = "http://164.107.127.214/event_planner/create_user.php";
+    private static String url_create_user = DBConnectActivity.connect_url_header + "create_user.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -99,7 +99,7 @@ public class SignupFragment extends Fragment{
                 params.add(new BasicNameValuePair("password", password));
                 params.add(new BasicNameValuePair("email", email));
                 params.add(new BasicNameValuePair("phone", phone));
-            	DBConnectActivity dbConnect = new DBConnectActivity(getActivity(), params, url_create_user, "POST", processing_message, R.string.email_exist_alert_title, R.string.email_exist_alert_message) {
+            	DBConnectActivity dbConnect = new DBConnectActivity(getActivity(), params, url_create_user, "POST", processing_message) {
             		@Override
             		public void handleSuccessResponse() {
             			// successfully created product
@@ -108,6 +108,22 @@ public class SignupFragment extends Fragment{
 
                     	// closing this screen
                         getActivity().finish();
+            		}
+            		
+            		@Override
+            		protected void onPostExecute(String file_url) {
+            			if (!this.success) {
+        					new AlertDialog.Builder(getActivity())
+        					.setTitle(R.string.email_exist_alert_title)
+        					.setMessage(R.string.email_exist_alert_message)
+        					.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+        						public void onClick(DialogInterface dialog, int which) { 
+        							// do nothing
+        						}
+        					})
+        					.show();
+        				}
+            			super.onPostExecute(file_url);
             		}
             	};
             	dbConnect.execute();

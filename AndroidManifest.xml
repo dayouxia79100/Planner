@@ -35,8 +35,9 @@
                 android:value=".schedepagertab.SchedulePagerTabActivity" />
 
             </activity>
-        <activity android:name="com.example.plannermockup.addevent.AddNewEventActivity"></activity>
-
+        <activity android:name="com.example.plannermockup.addevent.AddNewEventStep1Activity"></activity>
+		<activity android:name="com.example.plannermockup.addevent.AddNewEventStep2Activity"></activity>
+        
         <activity android:name=".whosgoing.WhosGoingActivity"
             android:parentActivityName=".eventdetail.EventDetailActivity"
             >

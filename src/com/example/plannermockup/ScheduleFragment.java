@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.plannermockup.eventdetail.EventDetailActivity;
 import com.example.plannermockup.model.Event;
@@ -42,11 +43,8 @@ public class ScheduleFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
 
-        Intent i = new Intent(getActivity(),EventDetailActivity.class);
+        Intent i = new Intent(getActivity(), EventDetailActivity.class);
         startActivity(i);
-        // to be implemented
-
-
     }
 
     @Override
@@ -81,7 +79,7 @@ public class ScheduleFragment extends ListFragment {
 
             Event currentEvent = getItem(position);
             TextView partyName = (TextView) convertView.findViewById(R.id.partyName_textView);
-            partyName.setText(currentEvent.getEventname());
+            partyName.setText(currentEvent.getEventName());
 
             TextView address = (TextView)convertView.findViewById(R.id.partyAddress_textView);
             address.setText(currentEvent.getAddress());

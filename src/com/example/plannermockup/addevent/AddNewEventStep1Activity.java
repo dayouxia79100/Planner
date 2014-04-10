@@ -4,11 +4,11 @@ import com.example.plannermockup.SingleFragmentActivity;
 
 import android.support.v4.app.Fragment;
 
-public class AddNewEventActivity extends SingleFragmentActivity{
+public class AddNewEventStep1Activity extends SingleFragmentActivity{
 	@Override
 	protected Fragment createFragment() {
 		// TODO Auto-generated method stub
-		return new AddNewEventFragment();
+		return new AddNewEventStep1Fragment();
 	}
 
 }

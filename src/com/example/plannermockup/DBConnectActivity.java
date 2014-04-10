@@ -22,7 +22,8 @@ import android.util.Log;
 
 public class DBConnectActivity extends AsyncTask<String, String, String> {
 
-	private Activity currentActivity;
+	public static String connect_url_header = "https://164.107.127.214/event_planner/";
+	public Activity currentActivity;
 	private ProgressDialog pDialog;
 	private JSONParser jsonParser = new JSONParser();
 	private List<NameValuePair> params;
@@ -32,15 +33,16 @@ public class DBConnectActivity extends AsyncTask<String, String, String> {
 	private int alertMessage;
 	private String requestType;
 	private static final String TAG_SUCCESS = "success";
-	private boolean success;
-
-	public DBConnectActivity (FragmentActivity current, List<NameValuePair> params, String url, String requestType, String pmessage, int atitle, int amessage) {
+	public boolean success;
+	private JSONObject json;
+	
+	public DBConnectActivity (FragmentActivity current, List<NameValuePair> params, String url, String requestType, String pmessage) {
 		this.currentActivity = current;
 		this.params = params;
 		this.connect_url = url;
 		this.processMessage = pmessage;
-		this.alertTitle = atitle;
-		this.alertMessage = amessage;
+		this.alertTitle = -1;
+		this.alertMessage = -1;
 		this.requestType = requestType;
 		this.success = false;
 	}
@@ -59,7 +61,7 @@ public class DBConnectActivity extends AsyncTask<String, String, String> {
 
 		// getting JSON Object
 		// Note that create product url accepts POST method
-		JSONObject json = jsonParser.makeHttpRequest(connect_url,
+		this.json = jsonParser.makeHttpRequest(connect_url,
 				requestType, params);
 
 		// check log cat fro response
@@ -85,17 +87,6 @@ public class DBConnectActivity extends AsyncTask<String, String, String> {
 	protected void onPostExecute(String file_url) {
 		// dismiss the dialog once done
 		pDialog.dismiss();
-		if (!success) {
-			new AlertDialog.Builder(currentActivity)
-			.setTitle(alertTitle)
-			.setMessage(alertMessage)
-			.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) { 
-					// do nothing
-				}
-			})
-			.show();
-		}
 	}
 
 	public void handleSuccessResponse() {
@@ -104,5 +95,9 @@ public class DBConnectActivity extends AsyncTask<String, String, String> {
 
 	public void handleFailureResponse() {
 		// to be overridden
+	}
+	
+	public JSONObject getJsonObject() {
+		return this.json;
 	}
 }

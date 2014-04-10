@@ -4,7 +4,7 @@ import com.example.plannermockup.R;
 import com.example.plannermockup.ScheduleFragment;
 import com.example.plannermockup.R.id;
 import com.example.plannermockup.R.menu;
-import com.example.plannermockup.addevent.AddNewEventActivity;
+import com.example.plannermockup.addevent.AddNewEventStep1Activity;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
@@ -27,9 +27,6 @@ public class SchedulePagerTabActivity extends FragmentActivity {
 
 
     private ViewPager mViewPager;
-
-
-
 
     @TargetApi(11)
     @Override
@@ -97,7 +94,6 @@ public class SchedulePagerTabActivity extends FragmentActivity {
         }
     }
     
-    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	// TODO Auto-generated method stub
@@ -113,7 +109,7 @@ public class SchedulePagerTabActivity extends FragmentActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.add_new_event:
-            	Intent i = new Intent(this, AddNewEventActivity.class);
+            	Intent i = new Intent(this, AddNewEventStep1Activity.class);
             	startActivity(i);
                 return true;
             default:
