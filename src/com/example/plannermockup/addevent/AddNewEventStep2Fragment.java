@@ -13,7 +13,7 @@ import com.example.plannermockup.SpecialCharacterEscaper;
 import com.example.plannermockup.login.LoginActivity;
 import com.example.plannermockup.login.LoginFragment;
 import com.example.plannermockup.model.Event;
-import com.example.plannermockup.model.User;
+import com.example.plannermockup.model.MyUser;
 import com.example.plannermockup.schedepagertab.SchedulePagerTabActivity;
 
 import android.R.integer;
@@ -72,7 +72,7 @@ public class AddNewEventStep2Fragment extends Fragment{
 		itemList = inputItemList.getText().toString();
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("eventname", SpecialCharacterEscaper.quoteEscaper(mEvent.getEventName())));
-        params.add(new BasicNameValuePair("hostid", Integer.toString(User.getUser().getUid())));
+        params.add(new BasicNameValuePair("hostid", Integer.toString(MyUser.getUser().getUid())));
         params.add(new BasicNameValuePair("address", SpecialCharacterEscaper.quoteEscaper(mEvent.getAddress())));
         params.add(new BasicNameValuePair("time", mEvent.getTime()));
         params.add(new BasicNameValuePair("description", SpecialCharacterEscaper.quoteEscaper(mEvent.getDescription())));

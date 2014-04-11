@@ -48,7 +48,7 @@ public class EventsSingleton {
     private static final String TAG_STATUS = "status";
 
     private EventsSingleton (){
-    	uid = User.getUser().getUid();
+    	uid = MyUser.getUser().getUid();
         myScheduleEvents = new ArrayList<Event>();
         invitedEvents = new ArrayList<Event>();
         hostingEvents = new ArrayList<Event>();

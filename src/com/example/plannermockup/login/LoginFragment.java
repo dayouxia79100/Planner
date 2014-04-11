@@ -15,6 +15,7 @@ import com.example.plannermockup.R.id;
 import com.example.plannermockup.R.layout;
 import com.example.plannermockup.model.Event;
 import com.example.plannermockup.model.EventsSingleton;
+import com.example.plannermockup.model.MyUser;
 import com.example.plannermockup.model.User;
 import com.example.plannermockup.schedepagertab.SchedulePagerTabActivity;
 import com.example.plannermockup.signup.SignupActivity;
@@ -104,7 +105,7 @@ public class LoginFragment extends Fragment{
 				JSONObject json = this.getJsonObject();
 				try {
 					JSONObject userInfo = json.getJSONArray(TAG_USERINFO).getJSONObject(0);
-					mUser = User.getUser();
+					mUser = MyUser.getUser();
 					mUser.setUid(userInfo.getInt(TAG_UID));
 					mUser.setName(userInfo.getString(TAG_NAME));
 					mUser.setEmail(userInfo.getString(TAG_EMAIL));

@@ -1,21 +1,16 @@
 package com.example.plannermockup.model;
 
-public class User {
-	private static User user;
+import java.io.Serializable;
+
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5175438735946162373L;
 	private int uid;
 	private String name;
 	private String email;
 	private String phone;
-	
-	private User() {
-		
-	}
-	
-	public static User getUser() {
-		if (user == null) 
-			user = new User();
-		return user;
-	}
 	
 	public void setUid(int uid) {
 		this.uid = uid;

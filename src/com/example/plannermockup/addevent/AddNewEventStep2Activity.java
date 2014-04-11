@@ -9,7 +9,6 @@ import android.util.Log;
 public class AddNewEventStep2Activity extends SingleFragmentActivity{
 	@Override
 	protected Fragment createFragment() {
-		Log.d("xxx", "here");
 		AddNewEventStep2Fragment step2Fragment = new AddNewEventStep2Fragment();
 		Event event = (Event) getIntent().getSerializableExtra("event");
 		if (event != null) step2Fragment.setEvent(event);

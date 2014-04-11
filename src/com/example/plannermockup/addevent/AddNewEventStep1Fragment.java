@@ -12,7 +12,7 @@ import com.example.plannermockup.R.layout;
 import com.example.plannermockup.R.string;
 import com.example.plannermockup.login.LoginFragment;
 import com.example.plannermockup.model.Event;
-import com.example.plannermockup.model.User;
+import com.example.plannermockup.model.MyUser;
 import com.example.plannermockup.schedepagertab.SchedulePagerTabActivity;
 import com.example.plannermockup.signup.SignupActivity;
 
@@ -69,7 +69,7 @@ public class AddNewEventStep1Fragment extends Fragment{
 		String eventTime = inputEventTime.getText().toString();
 		String eventAddress = inputEventAddress.getText().toString();
 		boolean allowGuestInvite = inputAllowGuestInvite.isChecked();
-		int hostId = User.getUser().getUid();
+		int hostId = MyUser.getUser().getUid();
 		
 		if (eventName.matches("") || eventTime.matches("")) {
 			new AlertDialog.Builder(getActivity())
