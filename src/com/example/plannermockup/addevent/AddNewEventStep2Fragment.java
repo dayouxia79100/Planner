@@ -13,10 +13,13 @@ import com.example.plannermockup.SpecialCharacterEscaper;
 import com.example.plannermockup.login.LoginActivity;
 import com.example.plannermockup.login.LoginFragment;
 import com.example.plannermockup.model.Event;
+import com.example.plannermockup.model.EventsSingleton;
 import com.example.plannermockup.model.MyUser;
 import com.example.plannermockup.schedepagertab.SchedulePagerTabActivity;
 
 import android.R.integer;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -86,12 +89,17 @@ public class AddNewEventStep2Fragment extends Fragment{
     		@Override
     		public void handleSuccessResponse() {
     			// successfully created product
-                Intent i = new Intent(getActivity(), SchedulePagerTabActivity.class);
-                startActivity(i);
-
-            	// closing this screen
-                getActivity().finish();
+                this.success = true;
     		}
+    		
+    		@Override
+			protected void onPostExecute(String file_url) {
+				if (this.success) {
+					EventsSingleton eventsSingleton = EventsSingleton.get();
+					eventsSingleton.loadEvents(getActivity(), new SchedulePagerTabActivity());
+				}
+				super.onPostExecute(file_url);
+			}
     	};
     	dbConnect.execute();
 	}
