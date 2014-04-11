@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,12 +13,12 @@ import com.example.plannermockup.DBConnectActivity;
 import com.example.plannermockup.R;
 import com.example.plannermockup.R.layout;
 import com.example.plannermockup.R.string;
+import com.example.plannermockup.guestlist.GuestListActivity;
 import com.example.plannermockup.model.Event;
 import com.example.plannermockup.model.EventsSingleton;
 import com.example.plannermockup.model.MyUser;
 import com.example.plannermockup.model.User;
 import com.example.plannermockup.schedepagertab.SchedulePagerTabActivity;
-import com.example.plannermockup.whosgoing.WhosGoingActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -58,8 +59,17 @@ public class EventDetailFragment extends Fragment {
 	
     private Button mWhosGoingButton;
 
-	
-	
+    private static String processing_message = "Loading...";
+    private static String url_get_guest_list = DBConnectActivity.connect_url_header + "get_guest_list.php";
+    private static final String TAG_GUEST_LIST = "guestlist";
+    private static final String TAG_UID = "uid";
+    private static final String TAG_EID = "eid";
+    private static final String TAG_NAME = "name";
+    private static final String TAG_EMAIL = "email";
+    private static final String TAG_PHONE = "phone";
+    
+    private ArrayList<User> guestList;
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_event_detail, container, false);
@@ -80,8 +90,7 @@ public class EventDetailFragment extends Fragment {
         mWhosGoingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), WhosGoingActivity.class);
-                startActivity(i);
+            	handleWhosGoing();
             }
         });
 
@@ -112,5 +121,49 @@ public class EventDetailFragment extends Fragment {
 
 	public void setHost(User host) {
     	this.hostUser = host;
+	}
+	
+	private void handleWhosGoing() {
+		guestList = new ArrayList<User>();
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair(TAG_EID, Integer.toString(mEvent.getEid())));
+    	DBConnectActivity dbConnect = new DBConnectActivity(getActivity(), params, url_get_guest_list, "GET", processing_message) {
+    		@Override
+    		public void handleSuccessResponse() {
+    			// successfully found user
+    			JSONObject json = this.getJsonObject();
+    			try {
+					JSONArray invited_events = json.getJSONArray(TAG_GUEST_LIST);
+					
+					for (int i = 0; i < invited_events.length(); i++) {
+						JSONObject c = invited_events.getJSONObject(i);
+
+						// Storing each json item in variable
+						int uid = Integer.parseInt(c.getString(TAG_UID));
+						String name = c.getString(TAG_NAME);
+						String email = c.getString(TAG_EMAIL);
+						String phone = c.getString(TAG_PHONE);
+						
+						User mUser = new User(uid, name, email, phone);
+
+						// adding HashList to ArrayList
+						guestList.add(mUser);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+    		}
+    		
+    		@Override
+    		protected void onPostExecute(String file_url) {
+    			Intent i = new Intent(this.currentActivity, GuestListActivity.class);
+				i.putExtra("guestlist", guestList);
+				this.currentActivity.startActivity(i);
+				// closing this screen
+				this.currentActivity.finish();
+    			super.onPostExecute(file_url);
+    		}
+    	};
+    	dbConnect.execute();
 	}
 }

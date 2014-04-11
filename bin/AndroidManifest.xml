@@ -38,7 +38,7 @@
         <activity android:name="com.example.plannermockup.addevent.AddNewEventStep1Activity"></activity>
 		<activity android:name="com.example.plannermockup.addevent.AddNewEventStep2Activity"></activity>
         
-        <activity android:name=".whosgoing.WhosGoingActivity"
+        <activity android:name="com.example.plannermockup.guestlist.GuestListActivity"
             android:parentActivityName=".eventdetail.EventDetailActivity"
             >
             <meta-data
