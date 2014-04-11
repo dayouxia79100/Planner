@@ -32,7 +32,7 @@ public class ListFragmentYo3 extends Fragment {
 
     public static final String EXTRA_TAB_NUM = "tabnumber";
     private int tabnumber;
-    private ArrayList<Event> mEventList;
+    private ArrayList<Event> mEvent2List;
 
     public static ListFragmentYo3 newInstance(int i){
         ListFragmentYo3 fragment = new ListFragmentYo3();
@@ -77,22 +77,25 @@ public class ListFragmentYo3 extends Fragment {
     private void initCards() {
 
 
-        mEventList = EventsSingleton.get().getEventList(tabnumber);
-        String headerTitle = mEventList.get(0).getEventname();
+        mEvent2List = EventsSingleton.get().getEventList(tabnumber);
+
         ArrayList<Card> cards = new ArrayList<Card>();
-        for (int i = 0; i < mEventList.size(); i++) {
+        for (int i = 0; i < mEvent2List.size(); i++) {
 
             CardExample2 cardx = new CardExample2(this.getActivity());
             CardHeader header = new CardHeader(getActivity());
+
+            String headerTitle = mEvent2List.get(i).getEventName();
+            Event currentEvent = mEvent2List.get(i);
 
             //Set the header title
             header.setTitle(headerTitle);
             cardx.addCardHeader(header);
 
 
-            cardx.title = "Come taste some wine!  " + i;
-            cardx.secondaryTitle = "Address is : some street yo" + i;
-            cardx.count = i + 2;
+            cardx.title = currentEvent.getDescription();
+            cardx.secondaryTitle = currentEvent.getTime();
+            cardx.count = i;
             cards.add(cardx);
 
 

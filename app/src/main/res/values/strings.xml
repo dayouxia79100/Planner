@@ -189,14 +189,19 @@
 
 
     <!-- sign up -->
-        <string name="info_not_complete_alert_title">Need more info</string>
-        <string name="info_not_complete_alert_message">Please fill in all required info before move on.</string>
-        <string name="password_not_matching_alert_title">Passwords not matching</string>
-        <string name="password_not_matching_alert_message">The passwords you entered does not match. Please enter the passwords again.</string>
-        <string name="email_exist_alert_title">Email Exist in System</string>
-        <string name="email_exist_alert_message">The given email has been registered. Please enter another one.</string>
+    <string name="info_not_complete_alert_title">Need more info</string>
+    <string name="info_not_complete_alert_message">Please fill in all required info before move on.</string>
+    <string name="password_not_matching_alert_title">Passwords not matching</string>
+    <string name="password_not_matching_alert_message">The passwords you entered does not match. Please enter the passwords again.</string>
+    <string name="email_exist_alert_title">Email Exist in System</string>
+    <string name="email_exist_alert_message">The given email has been registered. Please enter another one.</string>
 
-        <string name="ok">OK</string>
+    <!-- log in -->
+    <string name="login_fail_alert_title">Login Failed</string>
+    <string name="login_fail_alert_message">The user name or password is not correct.</string>
+
+    <string name="ok">OK</string>
+    <string name="add_event">Add</string>
 
 
 

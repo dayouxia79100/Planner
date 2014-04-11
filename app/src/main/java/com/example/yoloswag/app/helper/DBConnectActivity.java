@@ -6,7 +6,6 @@ import org.apache.http.NameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.plannermockup.login.LoginActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
