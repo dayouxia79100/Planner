@@ -55,7 +55,13 @@ public class ScheduleFragment extends ListFragment {
 		return fragment;
 	}
 
-
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		mEventAdapter.notifyDataSetChanged();
+	}
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		ArrayList<Event> eventlist = EventsSingleton.get().getEventList(mCurrentTabNumber);
@@ -95,13 +101,17 @@ public class ScheduleFragment extends ListFragment {
 		i.putExtra("host", hostUser);
 		startActivity(i);*/
 	}
+	
+	private EventAdapter mEventAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		
 		mEventList = EventsSingleton.get().getEventList(getArguments().getInt(EXTRA_TAB_NUM));
-		setListAdapter(new EventAdapter(mEventList));
+		mEventAdapter = new EventAdapter(mEventList);
+		setListAdapter(mEventAdapter);
 		mCurrentTabNumber = getArguments().getInt(EXTRA_TAB_NUM);
 	}
 
