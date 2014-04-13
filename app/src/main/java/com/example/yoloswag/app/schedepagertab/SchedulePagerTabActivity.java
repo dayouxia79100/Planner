@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.yoloswag.app.R;
+import com.example.yoloswag.app.addnewevent2.AddEventActivity;
 import com.example.yoloswag.app.eventlist.ListFragmentYo1;
 import com.example.yoloswag.app.eventlist.ListFragmentYo2;
 import com.example.yoloswag.app.eventlist.ListFragmentYo3;
@@ -116,7 +117,7 @@ public class SchedulePagerTabActivity extends FragmentActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.add_new_event:
-                Intent i = new Intent(this, AddNewEventActivity.class);
+                Intent i = new Intent(this, AddEventActivity.class);
                 startActivity(i);
                 return true;
             default:

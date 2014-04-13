@@ -159,6 +159,7 @@ public class ListFragmentYo3 extends Fragment {
             CardHeader header = new CardHeader(getActivity());
             addCardHeader(header);
 
+
             //Add ClickListener
             setOnClickListener(new OnCardClickListener() {
                 @Override

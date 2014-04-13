@@ -70,7 +70,7 @@
                 android:value=".schedepagertab.SchedulePagerTabActivity" />
         </activity>
 
-        <activity android:name=".newmodule.addevent.AddNewEventActivity"
+        <activity android:name=".addnewevent2.AddEventActivity"
             android:parentActivityName=".schedepagertab.SchedulePagerTabActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -89,6 +89,8 @@
 
 
         <activity android:name=".whosgoing.WhosGoingActivity"/>
+
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

@@ -16,7 +16,7 @@ public class AddNewEventFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater.inflate(R.layout.fragment_add_event, container,false);
+		View v = inflater.inflate(R.layout.fragment_add_event_ming, container,false);
 
         Button next = (Button)v.findViewById(R.id.next_add_event);
         next.setOnClickListener(new View.OnClickListener() {

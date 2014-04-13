@@ -23,7 +23,7 @@ public class AddNewEventFragment2 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_add_event2,container,false);
+        View v = inflater.inflate(R.layout.fragment_add_event2_ming,container,false);
 
 
         Calendar nextYear = Calendar.getInstance();
