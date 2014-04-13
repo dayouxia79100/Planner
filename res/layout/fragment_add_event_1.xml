@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/new_event_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_horizontal"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:text="NEW EVENT" />
 
     <EditText
@@ -15,6 +19,9 @@
         android:hint="What is it called?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/new_event_title"
+        android:singleLine="true"
+        android:layout_marginBottom="5dp"
         android:ems="10" >
 
         <requestFocus />
@@ -25,6 +32,9 @@
         android:hint="What is happening at the event?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/event_name_editText"
+        android:singleLine="true"
+        android:layout_marginBottom="5dp"
         android:ems="10" />
 
     <EditText
@@ -32,29 +42,53 @@
         android:hint="Where is the event?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/event_description_editText"
+        android:singleLine="true"
+        android:layout_marginBottom="10dp"
         android:ems="10" />
     
     <TextView
+        android:id="@+id/event_time_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="When is it?" />
+        android:layout_marginLeft="12.5dp"
+        android:textSize="17.5sp"
+        android:text="When is it?"
+        android:layout_below="@id/event_address_editText"
+        />
+    
+    <TimePicker
+        android:id="@+id/event_time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12.5dp"
+        android:textSize="12sp"
+        android:singleLine="true"
+        android:layout_below="@id/event_time_text" />
 
     <EditText
         android:id="@+id/event_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/event_time_picker"
+        android:singleLine="true"
+        android:layout_marginBottom="7.5dp"
         android:ems="10" />
     
     <CheckBox
         android:id="@+id/allow_guest_invite_checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/event_date"
         android:text="Allow guest to invite" />
 
     <Button
         android:id="@+id/next_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        style="?android:attr/borderlessButtonStyle"
         android:text="Next" />
 
-</LinearLayout>
+</RelativeLayout>
