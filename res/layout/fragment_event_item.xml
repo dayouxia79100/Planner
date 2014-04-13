@@ -18,9 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/going_checkBox"
+        style="?android:attr/borderlessButtonStyle"
         android:gravity="center"
-        android:padding="4dp"
-        android:text="ADD"
+        android:layout_marginRight="12.5dp"
+        android:background="@drawable/ic_calendar_gray"
         android:focusable="false"
         android:layout_alignParentRight="true"
         android:layout_below="@id/time_textView"/>
