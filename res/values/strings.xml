@@ -21,6 +21,13 @@
     <string name="login_fail_alert_title">Login Failed</string>
     <string name="login_fail_alert_message">The user name or password is not correct.</string>
     
+    <!-- join event -->
+    <string name="join_event_title">Join Event</string>
+    <string name="join_event_message">Do you want to go to this event?</string>
+    <string name="accept_event">Going</string>
+    <string name="pending_event">Cancel</string>
+    <string name="decline_event">No</string>
+    
     <string name="ok">OK</string>
     <string name="add_event">Add</string>
 

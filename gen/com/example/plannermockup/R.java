@@ -223,6 +223,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int action_settings=0x7f050026;
+        public static final int add_button=0x7f050019;
         public static final int add_new_event=0x7f050025;
         public static final int address_textview=0x7f050014;
         public static final int allow_guest_invite_checkBox=0x7f05000b;
@@ -237,7 +238,6 @@ containing a value of this type.
         public static final int event_name_textView=0x7f05000d;
         public static final int event_time_textview=0x7f050012;
         public static final int event_title_textview=0x7f050011;
-        public static final int going_checkBox=0x7f050019;
         public static final int guest_list=0x7f05000e;
         public static final int host_name_textview=0x7f050013;
         public static final int hybrid=0x7f050004;
@@ -280,8 +280,9 @@ containing a value of this type.
         public static final int main=0x7f0a0000;
     }
     public static final class string {
+        public static final int accept_event=0x7f06002c;
         public static final int action_settings=0x7f06001f;
-        public static final int add_event=0x7f06002b;
+        public static final int add_event=0x7f060030;
         public static final int app_name=0x7f06001b;
         public static final int are_you_going=0x7f060020;
         /**   Title for notification shown when GooglePlayServices needs to be
@@ -378,12 +379,17 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
+        public static final int decline_event=0x7f06002e;
         public static final int email_exist_alert_message=0x7f060027;
         public static final int email_exist_alert_title=0x7f060026;
         public static final int info_not_complete_alert_message=0x7f060023;
         /**  sign up 
          */
         public static final int info_not_complete_alert_title=0x7f060022;
+        public static final int join_event_message=0x7f06002b;
+        /**  join event 
+         */
+        public static final int join_event_title=0x7f06002a;
         /**  Location client code resources (prefix with location_client) 
          */
         public static final int location_client_powered_by_google=0x7f06001a;
@@ -391,9 +397,10 @@ containing a value of this type.
         /**  log in 
          */
         public static final int login_fail_alert_title=0x7f060028;
-        public static final int ok=0x7f06002a;
+        public static final int ok=0x7f06002f;
         public static final int password_not_matching_alert_message=0x7f060025;
         public static final int password_not_matching_alert_title=0x7f060024;
+        public static final int pending_event=0x7f06002d;
         public static final int title_section1=0x7f06001c;
         public static final int title_section2=0x7f06001d;
         public static final int title_section3=0x7f06001e;

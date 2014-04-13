@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import com.example.plannermockup.eventdetail.EventDetailActivity;
 import com.example.plannermockup.model.Event;
 import com.example.plannermockup.model.EventsSingleton;
+import com.example.plannermockup.model.MyUser;
 import com.example.plannermockup.model.User;
 import com.example.plannermockup.schedepagertab.SchedulePagerTabActivity;
 import com.google.android.gms.internal.m;
@@ -41,10 +42,13 @@ public class ScheduleFragment extends ListFragment {
 	private ArrayList<Event> mEventList;
 	public static final String EXTRA_TAB_NUM = "tabnumber";
 	private int mCurrentTabNumber;
-	private static String processing_message = "Loading...";
-	private static String url_get_user_name = DBConnectActivity.connect_url_header + "get_user_name.php";
+	private static final String processing_message = "Loading...";
+	private static final String url_get_user_name = DBConnectActivity.connect_url_header + "get_user_name.php";
+	private static final String url_update_event_status = DBConnectActivity.connect_url_header + "update_event_status.php";
 	private static final String TAG_USERINFO = "userinfo";
 	private static final String TAG_UID = "uid";
+	private static final String TAG_EID = "eid";
+	private static final String TAG_STATUS = "status";
 	private static final String TAG_NAME = "name";
 
 	public static ScheduleFragment newInstance(int position){
@@ -95,11 +99,6 @@ public class ScheduleFragment extends ListFragment {
 			}
 		};
 		dbConnect.execute();
-		
-		/*Intent i = new Intent(getActivity(), EventDetailActivity.class);
-		i.putExtra("event", currentEvent);
-		i.putExtra("host", hostUser);
-		startActivity(i);*/
 	}
 	
 	private EventAdapter mEventAdapter;
@@ -108,7 +107,6 @@ public class ScheduleFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		
 		mEventList = EventsSingleton.get().getEventList(getArguments().getInt(EXTRA_TAB_NUM));
 		mEventAdapter = new EventAdapter(mEventList);
 		setListAdapter(mEventAdapter);
@@ -133,11 +131,11 @@ public class ScheduleFragment extends ListFragment {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if(convertView == null){
 				convertView = getActivity().getLayoutInflater()
-						.inflate(R.layout.fragment_event_item,null);
+						.inflate(R.layout.fragment_event_item, null);
 
 			}
 
-			Event currentEvent = getItem(position);
+			final Event currentEvent = getItem(position);
 			TextView partyName = (TextView) convertView.findViewById(R.id.partyName_textView);
 			partyName.setText(currentEvent.getEventName());
 
@@ -147,14 +145,57 @@ public class ScheduleFragment extends ListFragment {
 			TextView time = (TextView)convertView.findViewById(R.id.time_textView);
 			time.setText(currentEvent.getTime());
 
-			Button addCalendarButton = (Button)convertView.findViewById(R.id.going_checkBox);
-			addCalendarButton.setOnClickListener(new View.OnClickListener() {
+			final Button addButton = (Button)convertView.findViewById(R.id.add_button);
+			String statusString = "";
+			switch (currentEvent.getStatus()) {
+			case 0:
+				statusString = "Pending";
+				break;
+			case -1:
+				statusString = "Declined";
+				break;
+			case 1:
+				statusString = "Going";
+				break;
+			}
+			addButton.setText(statusString);
+			addButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					AddCalendarDialogFragment dialog = new AddCalendarDialogFragment();
-
-
-					dialog.show(getActivity().getSupportFragmentManager(),"zz");
+					new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.join_event_title)
+                    .setMessage(R.string.join_event_message)
+                    .setPositiveButton(R.string.accept_event, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) { 
+                            addButton.setText("Going");
+                            updateStatusOnDB(1);
+                            EventsSingleton.get().addToMySchedule(currentEvent);
+                        }
+                     })
+                     .setNeutralButton(R.string.pending_event, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) { 
+                            addButton.setText("Pending");
+                            updateStatusOnDB(0);
+                            EventsSingleton.get().removeFromMySchedule(currentEvent);
+                        }
+                     })
+                     .setNegativeButton(R.string.decline_event, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) { 
+                            addButton.setText("Declined");
+                            updateStatusOnDB(-1);
+                            EventsSingleton.get().removeFromMySchedule(currentEvent);
+                        }
+                     })
+                    .show();
+				}
+				
+				private void updateStatusOnDB(int status) {
+					List<NameValuePair> params = new ArrayList<NameValuePair>();
+					params.add(new BasicNameValuePair(TAG_EID, Integer.toString(currentEvent.getEid())));
+					params.add(new BasicNameValuePair(TAG_UID, Integer.toString(MyUser.getUser().getUid())));
+					params.add(new BasicNameValuePair(TAG_STATUS, Integer.toString(status)));
+					DBConnectActivity dbConnect = new DBConnectActivity(getActivity(), params, url_update_event_status, "POST", processing_message);
+					dbConnect.execute();
 				}
 			});
 

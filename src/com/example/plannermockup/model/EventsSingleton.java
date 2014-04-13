@@ -69,6 +69,16 @@ public class EventsSingleton {
     	this.hostingEvents = events;
     }
     
+    public void addToMySchedule(Event event) {
+    	if (!this.myScheduleEvents.contains(event))
+    		this.myScheduleEvents.add(event);
+    }
+    
+    public void removeFromMySchedule(Event event) {
+    	if (this.myScheduleEvents.contains(event))
+    		this.myScheduleEvents.remove(event);
+    }
+    
     public void loadEvents(FragmentActivity mActivity, final FragmentActivity nextActivity) {
     	invitedEvents.clear();
     	hostingEvents.clear();
@@ -103,6 +113,9 @@ public class EventsSingleton {
 
 						// adding HashList to ArrayList
 						invitedEvents.add(event);
+						if (status == 1) {
+							myScheduleEvents.add(event);
+						}
 					}
 					for (int i = 0; i < hosting_events.length(); i++) {
 						JSONObject c = hosting_events.getJSONObject(i);
@@ -123,6 +136,7 @@ public class EventsSingleton {
 
 						// adding HashList to ArrayList
 						hostingEvents.add(event);
+						myScheduleEvents.add(event);
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -176,6 +190,9 @@ public class EventsSingleton {
 
 						// adding HashList to ArrayList
 						invitedEvents.add(event);
+						if (status == 1) {
+							myScheduleEvents.add(event);
+						}
 					}
 					for (int i = 0; i < hosting_events.length(); i++) {
 						JSONObject c = hosting_events.getJSONObject(i);
@@ -196,6 +213,7 @@ public class EventsSingleton {
 
 						// adding HashList to ArrayList
 						hostingEvents.add(event);
+						myScheduleEvents.add(event);
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
