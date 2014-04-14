@@ -14,6 +14,7 @@ import com.example.yoloswag.app.helper.DBConnectActivity;
 import com.example.yoloswag.app.model.EventsSingleton;
 import com.example.yoloswag.app.model.User;
 import com.example.yoloswag.app.schedepagertab.SchedulePagerTabActivity;
+import com.example.yoloswag.app.signup.SignupActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -24,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -46,7 +48,9 @@ public class LoginFragment extends Fragment{
 	private static final String TAG_EMAIL = "email";
 	private static final String TAG_PHONE = "phone";
 
-	@Override
+
+
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		Log.v(LoginFragment.class.toString(),"onCreateView is called");
@@ -64,8 +68,8 @@ public class LoginFragment extends Fragment{
 		mSignupButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				//Intent i = new Intent(getActivity(),SignupActivity.class);
-				//startActivity(i);
+				Intent i = new Intent(getActivity(),SignupActivity.class);
+				startActivity(i);
 			}
 		});
 

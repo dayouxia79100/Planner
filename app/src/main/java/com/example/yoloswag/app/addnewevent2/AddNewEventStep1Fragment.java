@@ -19,6 +19,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.UserDictionary;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputBinding;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 //by summer
@@ -38,62 +41,110 @@ public class AddNewEventStep1Fragment extends Fragment{
 	private EditText inputEventTime;
 	private EditText inputEventAddress;
 	private CheckBox inputAllowGuestInvite;
-	
-	@Override
+    private Event mCurrentEvent;
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mCurrentEvent = CurrentEventSession.get().getEvent();
+    }
+
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		Log.v(LoginFragment.class.toString(),"onCreateView is called");
 		View v = inflater.inflate(R.layout.fragment_add_event_1_summer, container,false);
 		
 		inputEventName = (EditText)v.findViewById(R.id.event_name_editText);
-        
+        inputEventName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                mCurrentEvent.setEventName(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
 
 		inputEventAddress = (EditText)v.findViewById(R.id.event_address_editText);
-		inputEventDescription = (EditText)v.findViewById(R.id.event_description_editText);
-		inputEventTime = (EditText)v.findViewById(R.id.event_date);
-		inputAllowGuestInvite = (CheckBox)v.findViewById(R.id.allow_guest_invite_checkBox);
-		
-		nextButton = (Button)v.findViewById(R.id.next_button);
-		nextButton.setOnClickListener(new View.OnClickListener() {
+        inputEventAddress.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                handleNext();
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                mCurrentEvent.setAddress(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+		inputEventDescription = (EditText)v.findViewById(R.id.event_description_editText);
+        inputEventDescription.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                ;
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                mCurrentEvent.setDescription(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+		inputEventTime = (EditText)v.findViewById(R.id.event_date);
+        inputEventTime.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                mCurrentEvent.setTime(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
+		inputAllowGuestInvite = (CheckBox)v.findViewById(R.id.allow_guest_invite_checkBox);
+        inputAllowGuestInvite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mCurrentEvent.setAllowGuestInivte(b);
             }
         });
 		
 		return v;
 	}
 	
-	private void handleNext() {
-		String eventName = inputEventName.getText().toString();
-		String eventDescription = inputEventDescription.getText().toString();
-		String eventTime = inputEventTime.getText().toString();
-		String eventAddress = inputEventAddress.getText().toString();
-		boolean allowGuestInvite = inputAllowGuestInvite.isChecked();
-		int hostId = User.getUser().getUid();
-		
-		if (eventName.matches("") || eventTime.matches("")) {
-			new AlertDialog.Builder(getActivity())
-            .setTitle(R.string.info_not_complete_alert_title)
-            .setMessage(R.string.info_not_complete_alert_message)
-            .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) { 
-                    // do nothing
-                }
-             })
-            .show();
-        	return;
-		}
 
 
-        // need to pass this event, use a singleton or pass it along with bundle
-
-		Event mEvent = new Event(eventName, hostId, eventAddress, eventTime, eventDescription, allowGuestInvite);
-        CurrentEventSession.get().setEvent(mEvent);
 		
 
 
-        // closing this screen
-        // getActivity().finish();
-	}
+
 }

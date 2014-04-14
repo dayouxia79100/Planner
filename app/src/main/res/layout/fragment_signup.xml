@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#54B98F">
+   
+	<TextView
+	    android:id="@+id/text_newAccount"
+	    android:layout_width="wrap_content"        
+	    android:layout_height="30dp"
+	    android:layout_marginTop="100dp"
+	    android:layout_marginBottom="22.5dp"
+	    android:text="Create Your Account"
+	    android:layout_centerHorizontal="true"
+	    android:textColor="#EEEEEE"
+	    android:textSize="30sp" />
+    
+	<EditText
+        android:id="@+id/email_editText"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rect_textedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="36dp"
+        android:paddingRight="16dp"
+        android:paddingTop="17.5dp"
+        android:layout_below="@id/text_newAccount"
+        android:hint="Enter your email"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"/>
+	
+	<ImageView
+        android:id="@+id/image_email"
+        android:layout_width="36dp"
+        android:layout_height="40dp"
+        android:paddingTop="17.5dp"
+        android:layout_below="@id/text_newAccount"
+        android:layout_toRightOf="@id/email_editText"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_action_email"
+        />
+    
+	<EditText
+	    android:id="@+id/name_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="36dp"
+        android:paddingRight="16dp"
+        android:paddingTop="17.5dp"
+        android:layout_below="@id/email_editText"
+        android:hint="Enter your name"
+        android:singleLine="true"
+        android:background="@drawable/rect_textedit"
+        android:layout_gravity="center_horizontal"/>
+	
+	<ImageView
+        android:id="@+id/image_name"
+        android:layout_width="36dp"
+        android:layout_height="40dp"
+        android:paddingTop="17.5dp"
+        android:layout_below="@id/email_editText"
+        android:layout_toRightOf="@id/name_editText"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_action_person"
+        />
+	
+    <EditText
+        android:id="@+id/password_editText"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="36dp"
+        android:paddingRight="16dp"
+        android:paddingTop="17.5dp"
+        android:layout_below="@id/name_editText"
+        android:hint="Enter your password"
+        android:singleLine="true"
+        android:background="@drawable/rect_textedit"
+        android:layout_gravity="center_horizontal"/>
+    
+	<ImageView
+        android:id="@+id/image_password"
+        android:layout_width="36dp"
+        android:layout_height="40dp"
+        android:paddingTop="17.5dp"
+        android:layout_below="@id/name_editText"
+        android:layout_toRightOf="@id/password_editText"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_action_secure"
+        />
+    
+    <EditText
+        android:id="@+id/password_confirm_editText"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="36dp"
+        android:paddingRight="16dp"
+        android:paddingTop="17.5dp"
+        android:layout_below="@id/password_editText"
+        android:hint="Re-enter your password"
+        android:singleLine="true"
+        android:background="@drawable/rect_textedit"
+        android:layout_gravity="center_horizontal"/>
+    
+	<ImageView
+        android:id="@+id/image_passwordConfirm"
+        android:layout_width="36dp"
+        android:layout_height="40dp"
+        android:paddingTop="17.5dp"
+        android:layout_below="@id/password_editText"
+        android:layout_toRightOf="@id/password_confirm_editText"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_action_secure"
+        />
+    
+    <EditText
+        android:id="@+id/phone_editText"
+        android:inputType="phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="36dp"
+        android:paddingRight="16dp"
+        android:paddingTop="17.5dp"
+        android:paddingBottom="17.5dp"
+        android:layout_marginBottom="17.5dp"
+        android:hint="Enter your phone"
+        android:layout_below="@id/password_confirm_editText"
+        android:singleLine="true"
+        android:background="@drawable/rect_textedit"
+        android:layout_gravity="center_horizontal"/>
+    
+	<ImageView
+        android:id="@+id/image_phone"
+        android:layout_width="36dp"
+        android:layout_height="40dp"
+        android:paddingTop="17.5dp"
+        android:layout_below="@id/password_confirm_editText"
+        android:layout_toRightOf="@id/phone_editText"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_action_call"
+        />
+    
+	<Button
+	    android:id="@+id/signup_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone_editText"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#EEEEEE"
+        android:textSize="25sp"
+        android:text="Sign up"/>
+	
+	    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="2dp"
+        android:text="© Party Planner 2014"
+        android:textSize="10sp"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

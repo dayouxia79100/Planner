@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
-
         <requestFocus />
     </EditText>
 
@@ -51,10 +50,5 @@
         android:layout_height="wrap_content"
         android:text="Allow guest to invite" />
 
-    <Button
-        android:id="@+id/next_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next" />
 
 </LinearLayout>
