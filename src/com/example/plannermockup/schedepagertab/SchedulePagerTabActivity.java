@@ -107,9 +107,14 @@ public class SchedulePagerTabActivity extends FragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+    	Intent i;
         switch (item.getItemId()) {
             case R.id.add_new_event:
-            	Intent i = new Intent(this, AddNewEventStep1Activity.class);
+            	i = new Intent(this, AddNewEventStep1Activity.class);
+            	startActivity(i);
+                return true;
+            case R.id.friend_list:
+            	i = new Intent(this, AddNewEventStep1Activity.class);
             	startActivity(i);
                 return true;
             default:

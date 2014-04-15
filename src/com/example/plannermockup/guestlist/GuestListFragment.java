@@ -1,5 +1,7 @@
 package com.example.plannermockup.guestlist;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import com.example.plannermockup.AddCalendarDialogFragment;
 import com.example.plannermockup.R;
 import com.example.plannermockup.model.Event;
+import com.example.plannermockup.model.MyUser;
 import com.example.plannermockup.model.User;
 
 import java.util.ArrayList;
@@ -26,14 +29,13 @@ import java.util.ArrayList;
 public class GuestListFragment extends ListFragment {
 
     private ArrayList<User> mGuestList = new ArrayList<User>();
-    private ArrayList<String> mGuestName = new ArrayList<String>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-        setListAdapter(new WhosGoingAdapter(mGuestName));
+        setListAdapter(new WhosGoingAdapter(mGuestList));
     }
 
 
@@ -48,8 +50,8 @@ public class GuestListFragment extends ListFragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private class WhosGoingAdapter extends ArrayAdapter<String> {
-        public WhosGoingAdapter(ArrayList<String> names){
+    private class WhosGoingAdapter extends ArrayAdapter<User> {
+        public WhosGoingAdapter(ArrayList<User> names){
             super(getActivity(),0, names);
         }
 
@@ -65,14 +67,34 @@ public class GuestListFragment extends ListFragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             if(convertView == null){
                 convertView = getActivity().getLayoutInflater()
-                        .inflate(android.R.layout.simple_list_item_1,null);
+                        .inflate(R.layout.list_guest,null);
 
             }
 
-            TextView textView = (TextView)convertView.findViewById(android.R.id.text1);
-            textView.setText(mGuestName.get(position));
-
-
+            TextView guestNameTextView = (TextView)convertView.findViewById(R.id.guest_name);
+            guestNameTextView.setText(mGuestList.get(position).getName());
+            TextView guestEmailTextView = (TextView)convertView.findViewById(R.id.guest_email);
+            guestEmailTextView.setText(mGuestList.get(position).getEmail());
+            Button addFriendButton = (Button)convertView.findViewById(R.id.send_friend_request_to_guest_button);
+            addFriendButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                	new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.send_friend_request_title)
+                    .setMessage(R.string.send_friend_request_message)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            //(mItem, !cancel_bring);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .show();
+                }
+            });
             return convertView;
         }
 
@@ -81,9 +103,5 @@ public class GuestListFragment extends ListFragment {
     
     public void setGuestList(ArrayList<User> guestlist) {
     	mGuestList = guestlist;
-    	mGuestName = new ArrayList<String>();
-    	for (int i = 0; i < guestlist.size(); i++) {
-    		mGuestName.add(guestlist.get(i).getName());
-    	}
     }
 }

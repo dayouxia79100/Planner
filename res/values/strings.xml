@@ -24,8 +24,8 @@
     <!-- join event -->
     <string name="join_event_title">Join Event</string>
     <string name="join_event_message">Do you want to go to this event?</string>
-    <string name="accept_event">Going</string>
-    <string name="pending_event">Cancel</string>
+    <string name="accept_event">Yes</string>
+    <string name="pending_event">Maybe</string>
     <string name="decline_event">No</string>
     
     <!-- bring item -->
@@ -37,6 +37,13 @@
     <string name="cancel_bring_button_text">Cancel bringing this item</string>
     <string name="no_one_bring_message">No one is bringing this yet.</string>
     
+    <!-- friend list -->
+    <string name="add_friend_button_text">Send Friend Request</string>
+    <string name="confirm_friend_button_text">Confirm Friend Request</string>
+    <string name="remove_friend_button_text">Remove</string>
+    <string name="send_friend_request_title">Send Friend Request</string>
+    <string name="send_friend_request_message">Do you want to send a friend request?</string>
+
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>

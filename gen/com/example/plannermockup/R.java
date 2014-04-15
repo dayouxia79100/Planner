@@ -222,12 +222,14 @@ containing a value of this type.
         public static final int ic_plusone_tall_off_client=0x7f02001d;
     }
     public static final class id {
-        public static final int action_settings=0x7f05002a;
+        public static final int action_settings=0x7f050034;
         public static final int add_button=0x7f050019;
-        public static final int add_new_event=0x7f050029;
+        public static final int add_friend_button=0x7f050026;
+        public static final int add_new_event=0x7f050032;
         public static final int address_textview=0x7f050014;
         public static final int allow_guest_invite_checkBox=0x7f05000b;
-        public static final int bring_item_button=0x7f050027;
+        public static final int bring_item_button=0x7f05002d;
+        public static final int confirm_friend_button=0x7f050030;
         public static final int container=0x7f050006;
         public static final int description_textview=0x7f050015;
         public static final int done_button=0x7f050010;
@@ -239,26 +241,34 @@ containing a value of this type.
         public static final int event_name_textView=0x7f05000d;
         public static final int event_time_textview=0x7f050012;
         public static final int event_title_textview=0x7f050011;
+        public static final int friend_email=0x7f050025;
+        public static final int friend_list=0x7f050033;
+        public static final int friend_name=0x7f050024;
+        public static final int guest_email=0x7f050028;
         public static final int guest_list=0x7f05000e;
+        public static final int guest_name=0x7f050027;
         public static final int host_name_textview=0x7f050013;
         public static final int hybrid=0x7f050004;
         public static final int imageView=0x7f05001c;
         public static final int item_list=0x7f05000f;
-        public static final int item_name=0x7f050024;
-        public static final int item_quantity=0x7f050025;
-        public static final int item_user_name=0x7f050026;
+        public static final int item_name=0x7f05002a;
+        public static final int item_quantity=0x7f05002b;
+        public static final int item_user_name=0x7f05002c;
         public static final int login_button=0x7f05001f;
         public static final int name_editText=0x7f050021;
         public static final int next_button=0x7f05000c;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int pager=0x7f050028;
+        public static final int pager=0x7f050031;
         public static final int partyAddress_textView=0x7f05001b;
         public static final int partyName_textView=0x7f05001a;
         public static final int password_confirm_editText=0x7f050022;
         public static final int password_editText=0x7f05001e;
+        public static final int pending_friend_email=0x7f05002f;
+        public static final int pending_friend_name=0x7f05002e;
         public static final int phone_editText=0x7f050023;
         public static final int satellite=0x7f050002;
+        public static final int send_friend_request_to_guest_button=0x7f050029;
         public static final int signup_button=0x7f050020;
         public static final int terrain=0x7f050003;
         public static final int things_to_bring_button=0x7f050017;
@@ -278,8 +288,11 @@ containing a value of this type.
         public static final int fragment_events=0x7f030005;
         public static final int fragment_login=0x7f030006;
         public static final int fragment_signup=0x7f030007;
-        public static final int list_item=0x7f030008;
-        public static final int pager=0x7f030009;
+        public static final int list_friend=0x7f030008;
+        public static final int list_guest=0x7f030009;
+        public static final int list_item=0x7f03000a;
+        public static final int list_pending_friend=0x7f03000b;
+        public static final int pager=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -287,7 +300,10 @@ containing a value of this type.
     public static final class string {
         public static final int accept_event=0x7f06002c;
         public static final int action_settings=0x7f06001f;
-        public static final int add_event=0x7f060039;
+        public static final int add_event=0x7f06003e;
+        /**  friend list 
+         */
+        public static final int add_friend_button_text=0x7f060036;
         public static final int app_name=0x7f06001b;
         public static final int are_you_going=0x7f060020;
         /**   Title for notification shown when GooglePlayServices needs to be
@@ -318,7 +334,7 @@ containing a value of this type.
         /**  bring item 
          */
         public static final int bring_title=0x7f06002f;
-        public static final int cancel=0x7f060037;
+        public static final int cancel=0x7f06003c;
         public static final int cancel_bring_button_text=0x7f060034;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -391,6 +407,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
+        public static final int confirm_friend_button_text=0x7f060037;
         public static final int decline_event=0x7f06002e;
         public static final int email_exist_alert_message=0x7f060027;
         public static final int email_exist_alert_title=0x7f060026;
@@ -412,14 +429,17 @@ containing a value of this type.
         public static final int no_one_bring_message=0x7f060035;
         public static final int not_bring_message=0x7f060032;
         public static final int not_bring_title=0x7f060031;
-        public static final int ok=0x7f060038;
+        public static final int ok=0x7f06003d;
         public static final int password_not_matching_alert_message=0x7f060025;
         public static final int password_not_matching_alert_title=0x7f060024;
         public static final int pending_event=0x7f06002d;
+        public static final int remove_friend_button_text=0x7f060038;
+        public static final int send_friend_request_message=0x7f06003a;
+        public static final int send_friend_request_title=0x7f060039;
         public static final int title_section1=0x7f06001c;
         public static final int title_section2=0x7f06001d;
         public static final int title_section3=0x7f06001e;
-        public static final int yes=0x7f060036;
+        public static final int yes=0x7f06003b;
         public static final int yes_going=0x7f060021;
     }
     public static final class style {

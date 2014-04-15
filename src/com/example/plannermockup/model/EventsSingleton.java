@@ -79,6 +79,27 @@ public class EventsSingleton {
     		this.myScheduleEvents.remove(event);
     }
     
+    public void updateEventStatus(Event event, int status) {
+    	if (this.myScheduleEvents.contains(event)) {
+    		this.myScheduleEvents.remove(event);
+    		Event newEvent = event;
+    		newEvent.setStatus(status);
+    		this.myScheduleEvents.add(newEvent);
+    	}
+    	if (this.invitedEvents.contains(event)) {
+    		this.invitedEvents.remove(event);
+    		Event newEvent = event;
+    		newEvent.setStatus(status);
+    		this.invitedEvents.add(newEvent);
+    	}
+    	if (this.hostingEvents.contains(event)) {
+    		this.hostingEvents.remove(event);
+    		Event newEvent = event;
+    		newEvent.setStatus(status);
+    		this.hostingEvents.add(newEvent);
+    	}
+    }
+    
     public void loadEvents(FragmentActivity mActivity, final FragmentActivity nextActivity) {
     	invitedEvents.clear();
     	hostingEvents.clear();

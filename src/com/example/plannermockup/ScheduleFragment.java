@@ -170,6 +170,7 @@ public class ScheduleFragment extends ListFragment {
                             addButton.setText("Going");
                             updateStatusOnDB(1);
                             EventsSingleton.get().addToMySchedule(currentEvent);
+                            EventsSingleton.get().updateEventStatus(currentEvent, 1);
                         }
                      })
                      .setNeutralButton(R.string.pending_event, new DialogInterface.OnClickListener() {
@@ -177,6 +178,7 @@ public class ScheduleFragment extends ListFragment {
                             addButton.setText("Pending");
                             updateStatusOnDB(0);
                             EventsSingleton.get().removeFromMySchedule(currentEvent);
+                            EventsSingleton.get().updateEventStatus(currentEvent, 0);
                         }
                      })
                      .setNegativeButton(R.string.decline_event, new DialogInterface.OnClickListener() {
@@ -184,6 +186,7 @@ public class ScheduleFragment extends ListFragment {
                             addButton.setText("Declined");
                             updateStatusOnDB(-1);
                             EventsSingleton.get().removeFromMySchedule(currentEvent);
+                            EventsSingleton.get().updateEventStatus(currentEvent, -1);
                         }
                      })
                     .show();

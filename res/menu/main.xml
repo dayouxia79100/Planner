@@ -5,6 +5,10 @@
           android:title="@string/add_event"
           android:showAsAction="ifRoom"/>
     
+    <item android:id="@+id/friend_list"
+          android:title="Friends"
+          android:showAsAction="ifRoom"/>
+    
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

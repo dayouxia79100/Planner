@@ -146,13 +146,13 @@ public class ItemListFragment extends ListFragment {
 							}
                             handleBringItem(mItem, !cancel_bring);
                         }
-                     })
-                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                         public void onClick(DialogInterface dialog, int which) {
-                             // do nothing
-                         }
-                      })
-                     .show();
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .show();
                 }
             });
             return convertView;
