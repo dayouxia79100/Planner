@@ -228,6 +228,5 @@ public class EventDetailFragment extends Fragment {
     		}
     	};
     	dbConnect.execute();
-		
 	}
 }

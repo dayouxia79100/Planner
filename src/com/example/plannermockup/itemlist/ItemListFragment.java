@@ -102,13 +102,13 @@ public class ItemListFragment extends ListFragment {
             	itemQuantityTextView.setText(Integer.toString(quantity));
             else
             	itemQuantityTextView.setText("");
-            if (mItem.getUser().getName() != null) {
+            if (mItem.getUser().getName().length() != 0) {
             	itemUserNameTextView.setText(mItem.getUser().getName());
             	if (mItem.getUser().getUid() == MyUser.getUser().getUid()) {
             		bringItemButton.setText(R.string.cancel_bring_button_text);
             	}
             	else {
-            		//bringItemButton.setVisibility(View.GONE);
+            		bringItemButton.setVisibility(View.GONE);
             	}
             }
             else

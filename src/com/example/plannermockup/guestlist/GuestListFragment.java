@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.plannermockup.AddCalendarDialogFragment;
 import com.example.plannermockup.R;
 import com.example.plannermockup.model.Event;
+import com.example.plannermockup.model.FriendsSingleton;
 import com.example.plannermockup.model.MyUser;
 import com.example.plannermockup.model.User;
 
@@ -64,7 +65,7 @@ public class GuestListFragment extends ListFragment {
 
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             if(convertView == null){
                 convertView = getActivity().getLayoutInflater()
                         .inflate(R.layout.list_guest,null);
@@ -75,7 +76,7 @@ public class GuestListFragment extends ListFragment {
             guestNameTextView.setText(mGuestList.get(position).getName());
             TextView guestEmailTextView = (TextView)convertView.findViewById(R.id.guest_email);
             guestEmailTextView.setText(mGuestList.get(position).getEmail());
-            Button addFriendButton = (Button)convertView.findViewById(R.id.send_friend_request_to_guest_button);
+            /*Button addFriendButton = (Button)convertView.findViewById(R.id.send_friend_request_to_guest_button);
             addFriendButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -84,7 +85,7 @@ public class GuestListFragment extends ListFragment {
                     .setMessage(R.string.send_friend_request_message)
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            //(mItem, !cancel_bring);
+                            FriendsSingleton.get().sendFriendRequest(getActivity(), mGuestList.get(position).getUid());
                         }
                     })
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -94,11 +95,9 @@ public class GuestListFragment extends ListFragment {
                     })
                     .show();
                 }
-            });
+            });*/
             return convertView;
         }
-
-
     }
     
     public void setGuestList(ArrayList<User> guestlist) {
