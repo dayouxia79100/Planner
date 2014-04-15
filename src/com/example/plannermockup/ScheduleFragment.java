@@ -43,13 +43,15 @@ public class ScheduleFragment extends ListFragment {
 	public static final String EXTRA_TAB_NUM = "tabnumber";
 	private int mCurrentTabNumber;
 	private static final String processing_message = "Loading...";
-	private static final String url_get_user_name = DBConnectActivity.connect_url_header + "get_user_name.php";
+	private static final String url_get_user_info = DBConnectActivity.connect_url_header + "get_user_info.php";
 	private static final String url_update_event_status = DBConnectActivity.connect_url_header + "update_event_status.php";
 	private static final String TAG_USERINFO = "userinfo";
 	private static final String TAG_UID = "uid";
 	private static final String TAG_EID = "eid";
 	private static final String TAG_STATUS = "status";
 	private static final String TAG_NAME = "name";
+	private static final String TAG_EMAIL = "name";
+	private static final String TAG_PHONE = "name";
 
 	public static ScheduleFragment newInstance(int position){
 		ScheduleFragment fragment = new ScheduleFragment();
@@ -74,7 +76,7 @@ public class ScheduleFragment extends ListFragment {
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("uid", Integer.toString(currentEvent.getHostId())));
-		DBConnectActivity dbConnect = new DBConnectActivity(getActivity(), params, url_get_user_name, "GET", processing_message) {
+		DBConnectActivity dbConnect = new DBConnectActivity(getActivity(), params, url_get_user_info, "GET", processing_message) {
 			@Override
 			public void handleSuccessResponse() {
 				// successfully found user
@@ -83,6 +85,9 @@ public class ScheduleFragment extends ListFragment {
 					JSONObject userInfo = json.getJSONArray(TAG_USERINFO).getJSONObject(0);
 					hostUser.setUid(userInfo.getInt(TAG_UID));
 					hostUser.setName(userInfo.getString(TAG_NAME));
+					hostUser.setEmail(userInfo.getString(TAG_EMAIL));
+					hostUser.setPhone(userInfo.getString(TAG_PHONE));
+					
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
