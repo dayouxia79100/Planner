@@ -1,5 +1,7 @@
 package com.example.yoloswag.app.model;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 
 
@@ -17,6 +19,7 @@ public class Event implements Serializable {
 	private String description;
 	private boolean allowGuestInvite;
 	private int status;
+    private LatLng markerPosition;
 	
 	public Event() {
 		
@@ -115,4 +118,12 @@ public class Event implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+    public LatLng getMarkerPosition() {
+        return markerPosition;
+    }
+
+    public void setMarkerPosition(LatLng markerPosition) {
+        this.markerPosition = markerPosition;
+    }
 }

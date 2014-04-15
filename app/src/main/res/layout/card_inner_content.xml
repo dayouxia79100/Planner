@@ -37,25 +37,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
     <ImageButton
+        android:id="@+id/image_event"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/wine"/>
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="12.5dp"
+        android:src="@drawable/wine"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Im going"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12.5dp"
+        android:background="@drawable/ic_calendar_gray"
         android:id="@+id/going_button"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_marginLeft="100dp"/>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
