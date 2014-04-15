@@ -85,6 +85,5 @@ public class GuestListFragment extends ListFragment {
     	for (int i = 0; i < guestlist.size(); i++) {
     		mGuestName.add(guestlist.get(i).getName());
     	}
-    	Log.d("guest name", mGuestName.toString());
     }
 }

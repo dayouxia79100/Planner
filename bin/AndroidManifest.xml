@@ -46,6 +46,14 @@
                 android:value=".EventDetailActivity" />
 
         </activity>
+        <activity android:name="com.example.plannermockup.itemlist.ItemListActivity"
+            android:parentActivityName=".eventdetail.EventDetailActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EventDetailActivity" />
+
+        </activity>
 		<activity android:name=".signup.SignupActivity"></activity>
 
 

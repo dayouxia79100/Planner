@@ -14,8 +14,10 @@ import com.example.plannermockup.R;
 import com.example.plannermockup.R.layout;
 import com.example.plannermockup.R.string;
 import com.example.plannermockup.guestlist.GuestListActivity;
+import com.example.plannermockup.itemlist.ItemListActivity;
 import com.example.plannermockup.model.Event;
 import com.example.plannermockup.model.EventsSingleton;
+import com.example.plannermockup.model.Item;
 import com.example.plannermockup.model.MyUser;
 import com.example.plannermockup.model.User;
 import com.example.plannermockup.schedepagertab.SchedulePagerTabActivity;
@@ -32,6 +34,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
@@ -58,17 +61,24 @@ public class EventDetailFragment extends Fragment {
 	private TextView descriptionTextView;
 	
     private Button mWhosGoingButton;
-
+    private Button mThingsToBring;
+    
     private static String processing_message = "Loading...";
     private static String url_get_guest_list = DBConnectActivity.connect_url_header + "get_guest_list.php";
+    private static String url_get_item_list = DBConnectActivity.connect_url_header + "get_item_list.php";
     private static final String TAG_GUEST_LIST = "guestlist";
+    private static final String TAG_ITEM_LIST = "itemlist";
     private static final String TAG_UID = "uid";
     private static final String TAG_EID = "eid";
     private static final String TAG_NAME = "name";
     private static final String TAG_EMAIL = "email";
     private static final String TAG_PHONE = "phone";
+    private static final String TAG_IID = "iid";
+    private static final String TAG_QUANTITY = "quantity";
+    private static final String TAG_ITEM_NAME = "itemname";
     
     private ArrayList<User> guestList;
+    private ArrayList<Item> itemList;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -93,7 +103,15 @@ public class EventDetailFragment extends Fragment {
             	handleWhosGoing();
             }
         });
-
+        
+        mThingsToBring = (Button) v.findViewById(R.id.things_to_bring_button);
+        mThingsToBring.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            	handleThingsToBring();
+            }
+        });
+        
         return v;
     }
 
@@ -159,11 +177,57 @@ public class EventDetailFragment extends Fragment {
     			Intent i = new Intent(this.currentActivity, GuestListActivity.class);
 				i.putExtra("guestlist", guestList);
 				this.currentActivity.startActivity(i);
-				// closing this screen
-				this.currentActivity.finish();
     			super.onPostExecute(file_url);
     		}
     	};
     	dbConnect.execute();
+	}
+	
+	private void handleThingsToBring() {
+		itemList = new ArrayList<Item>();
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair(TAG_EID, Integer.toString(mEvent.getEid())));
+    	DBConnectActivity dbConnect = new DBConnectActivity(getActivity(), params, url_get_item_list, "GET", processing_message) {
+    		@Override
+    		public void handleSuccessResponse() {
+    			// successfully found user
+    			JSONObject json = this.getJsonObject();
+    			try {
+					JSONArray invited_events = json.getJSONArray(TAG_ITEM_LIST);
+					
+					for (int i = 0; i < invited_events.length(); i++) {
+						JSONObject c = invited_events.getJSONObject(i);
+						// Storing each json item in variable
+						
+						int iid = Integer.parseInt(c.getString(TAG_IID));
+						String itemName = c.getString(TAG_ITEM_NAME);
+						int quantity = Integer.parseInt(c.getString(TAG_QUANTITY));
+						User mUser = new User();
+						if (c.getString(TAG_UID) != "-1") {
+							int uid = Integer.parseInt(c.getString(TAG_UID));
+							String name = c.getString(TAG_NAME);
+							String email = c.getString(TAG_EMAIL);
+							String phone = c.getString(TAG_PHONE);
+							mUser = new User(uid, name, email, phone);
+						}
+						Item mItem = new Item(iid, itemName, quantity, mUser);
+						// adding HashList to ArrayList
+						itemList.add(mItem);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+    		}
+    		
+    		@Override
+    		protected void onPostExecute(String file_url) {
+    			Intent i = new Intent(getActivity(), ItemListActivity.class);
+				i.putExtra("itemlist", itemList);
+				getActivity().startActivity(i);
+    			super.onPostExecute(file_url);
+    		}
+    	};
+    	dbConnect.execute();
+		
 	}
 }
