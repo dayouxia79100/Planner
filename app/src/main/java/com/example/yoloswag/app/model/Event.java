@@ -20,6 +20,19 @@ public class Event implements Serializable {
 	private boolean allowGuestInvite;
 	private int status;
     private LatLng markerPosition;
+
+    // note address is (address + LatLng)
+    private String actualAddress;
+    public void convertAddress(){
+        address = actualAddress + "$"+markerPosition.latitude + "$"+markerPosition.longitude;
+    }
+
+    public void decomposeAddress(){
+        actualAddress = address.substring(0,address.indexOf('$'));
+        String lat = address.substring(address.indexOf('$')+1,address.lastIndexOf('$'));
+        String lng = address.substring(address.lastIndexOf('$')+1, address.length());
+        markerPosition = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+    }
 	
 	public Event() {
 		
@@ -125,5 +138,13 @@ public class Event implements Serializable {
 
     public void setMarkerPosition(LatLng markerPosition) {
         this.markerPosition = markerPosition;
+    }
+
+    public String getActualAddress() {
+        return actualAddress;
+    }
+
+    public void setActualAddress(String actualAddress) {
+        this.actualAddress = actualAddress;
     }
 }

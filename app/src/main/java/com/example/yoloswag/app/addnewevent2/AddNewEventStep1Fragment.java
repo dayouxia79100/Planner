@@ -157,7 +157,7 @@ public class AddNewEventStep1Fragment extends Fragment{
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                    mCurrentEvent.setAddress(charSequence.toString());
+                    mCurrentEvent.setActualAddress(charSequence.toString());
                 }
 
                 @Override

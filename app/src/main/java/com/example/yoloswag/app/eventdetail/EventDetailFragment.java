@@ -1,11 +1,15 @@
 package com.example.yoloswag.app.eventdetail;
 
 import com.example.yoloswag.app.R;
+import com.example.yoloswag.app.eventlist.ListFragmentYo3;
+import com.example.yoloswag.app.model.Event;
+import com.example.yoloswag.app.model.EventsSingleton;
 import com.example.yoloswag.app.whosgoing.WhosGoingActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -31,6 +35,22 @@ public class EventDetailFragment extends Fragment {
 
     private GoogleMap googleMap;
     private Button mWhosGoingButton;
+    private UiSettings mUiSettings;
+    private Event mEvent;
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //here i need to get the event from a list, but i don't know the index of the card i clicked.
+        mEvent = (Event)getActivity().getIntent().getSerializableExtra(ListFragmentYo3.CardExample2.EXTRA_EVENT);
+        mEvent.decomposeAddress();
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.v(EventDetailFragment.class.toString(),"onCreateView is called");
@@ -58,28 +78,31 @@ public class EventDetailFragment extends Fragment {
             // googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
             // googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
             // googleMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+            mUiSettings = googleMap.getUiSettings();
 
             // Showing / hiding your current location
             googleMap.setMyLocationEnabled(true);
 
             // Enable / Disable zooming controls
-            googleMap.getUiSettings().setZoomControlsEnabled(false);
+            mUiSettings.setZoomControlsEnabled(false);
 
             // Enable / Disable my location button
-            googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+            mUiSettings.setMyLocationButtonEnabled(true);
 
             // Enable / Disable Compass icon
-            googleMap.getUiSettings().setCompassEnabled(true);
+            mUiSettings.setCompassEnabled(true);
 
             // Enable / Disable Rotate gesture
-            googleMap.getUiSettings().setRotateGesturesEnabled(true);
+            mUiSettings.setRotateGesturesEnabled(true);
 
             // Enable / Disable zooming functionality
-            googleMap.getUiSettings().setZoomGesturesEnabled(true);
+            mUiSettings.setZoomGesturesEnabled(true);
         }
 
+
+
         MarkerOptions marker = new MarkerOptions().position(
-                new LatLng(39.9833, -82.9833))
+                mEvent.getMarkerPosition())
                 .title("YOLO SWAG");
 
 
@@ -96,12 +119,7 @@ public class EventDetailFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -84,6 +84,9 @@ public class AddNewEventStep2Fragment extends Fragment{
 	private void handleDone() {
 		guestList = inputGuestList.getText().toString();
 		itemList = inputItemList.getText().toString();
+        // convert actual address + marker position to address
+        mEvent.convertAddress();
+
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("eventname", SpecialCharacterEscaper.quoteEscaper(mEvent.getEventName())));
         params.add(new BasicNameValuePair("hostid", Integer.toString(User.getUser().getUid())));
