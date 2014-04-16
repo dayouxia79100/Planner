@@ -83,6 +83,7 @@ public class AddNewEventStep2Fragment extends Fragment{
 		itemList = inputItemList.getText().toString();
         // convert actual address + marker position to address
         mEvent.convertAddress();
+        mEvent.convertTime();
 
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("eventname", SpecialCharacterEscaper.quoteEscaper(mEvent.getEventName())));

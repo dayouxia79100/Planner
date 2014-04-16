@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yoloswag.app.R;
-import com.example.yoloswag.app.activityafterclick.ActivityAfterFragment;
 import com.example.yoloswag.app.newmodule.addevent.AddNewEventFragment;
 import com.example.yoloswag.app.newmodule.addevent.AddNewEventFragment2;
 

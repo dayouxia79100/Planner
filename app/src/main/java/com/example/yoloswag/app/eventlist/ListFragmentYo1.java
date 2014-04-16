@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yoloswag.app.R;
-import com.example.yoloswag.app.activityafterclick.ActivityAfterClick;
 import com.example.yoloswag.app.eventdetail.EventDetailActivity;
 import com.example.yoloswag.app.model.Event;
 import com.example.yoloswag.app.model.EventsSingleton;
@@ -189,15 +188,7 @@ public class ListFragmentYo1 extends Fragment {
             mSecondaryTitle = (TextView) parent.findViewById(R.id.carddemo_myapps_main_inner_secondaryTitle);
             mImGoingButton = (Button) parent.findViewById(R.id.going_button);
 
-            if(mImGoingButton != null){
-                mImGoingButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(getActivity(), ActivityAfterClick.class);
-                        startActivity(i);
-                    }
-                });
-            }
+
 
 
             if (mTitle != null)
