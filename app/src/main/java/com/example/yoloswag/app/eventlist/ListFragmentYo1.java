@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.yoloswag.app.activityafterclick.ActivityAfterClick;
 import com.example.yoloswag.app.R;
+import com.example.yoloswag.app.activityafterclick.ActivityAfterClick;
 import com.example.yoloswag.app.eventdetail.EventDetailActivity;
 import com.example.yoloswag.app.model.Event;
 import com.example.yoloswag.app.model.EventsSingleton;
@@ -78,20 +78,24 @@ public class ListFragmentYo1 extends Fragment {
 
 
         mEvent2List = EventsSingleton.get().getEventList(tabnumber);
+
         ArrayList<Card> cards = new ArrayList<Card>();
         for (int i = 0; i < mEvent2List.size(); i++) {
 
-            CardExample2 cardx = new CardExample2(this.getActivity());
+            CardExample2 cardx = new CardExample2(this.getActivity(), mEvent2List.get(i));
             CardHeader header = new CardHeader(getActivity());
+
             String headerTitle = mEvent2List.get(i).getEventName();
+            Event currentEvent = mEvent2List.get(i);
+
             //Set the header title
             header.setTitle(headerTitle);
             cardx.addCardHeader(header);
 
 
-            cardx.title = "Come taste some wine!  " + i;
-            cardx.secondaryTitle = "Address is : some street yo" + i;
-            cardx.count = i + 2;
+            cardx.title = currentEvent.getDescription();
+            cardx.secondaryTitle = currentEvent.getTime();
+            cardx.count = i;
             cards.add(cardx);
 
 
@@ -117,6 +121,7 @@ public class ListFragmentYo1 extends Fragment {
 
     public class MyCardArrayAdapter extends CardArrayAdapter{
 
+
         /**
          * Constructor
          *
@@ -135,6 +140,8 @@ public class ListFragmentYo1 extends Fragment {
 
     public class CardExample2 extends Card{
 
+        public static final String EXTRA_EVENT = "event";
+
         protected TextView mTitle;
         protected TextView mSecondaryTitle;
         protected Button mImGoingButton;
@@ -142,10 +149,12 @@ public class ListFragmentYo1 extends Fragment {
 
         protected String title;
         protected String secondaryTitle;
+        private Event currentEvent;
 
 
-        public CardExample2(Context context) {
+        public CardExample2(Context context, Event event) {
             super(context, R.layout.card_inner_content);
+            currentEvent = event;
             init();
         }
 
@@ -155,17 +164,20 @@ public class ListFragmentYo1 extends Fragment {
             CardHeader header = new CardHeader(getActivity());
             addCardHeader(header);
 
+
             //Add ClickListener
             setOnClickListener(new OnCardClickListener() {
                 @Override
                 public void onClick(Card card, View view) {
                     Toast.makeText(getContext(), "Click Listener card=" + getTitle(), Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(), EventDetailActivity.class);
+                    i.putExtra(EXTRA_EVENT, currentEvent);
                     startActivity(i);
+
                 }
             });
 
-            //setSwipeable(true);
+            setSwipeable(true);
         }
 
 

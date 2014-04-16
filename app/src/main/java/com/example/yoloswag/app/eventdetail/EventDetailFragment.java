@@ -3,19 +3,15 @@ package com.example.yoloswag.app.eventdetail;
 import com.example.yoloswag.app.R;
 import com.example.yoloswag.app.eventlist.ListFragmentYo3;
 import com.example.yoloswag.app.model.Event;
-import com.example.yoloswag.app.model.EventsSingleton;
 import com.example.yoloswag.app.whosgoing.WhosGoingActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
@@ -25,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by dayouxia on 2/14/14.
@@ -37,6 +34,13 @@ public class EventDetailFragment extends Fragment {
     private Button mWhosGoingButton;
     private UiSettings mUiSettings;
     private Event mEvent;
+
+
+    private TextView mEventTextView;
+    private TextView mTimeTextView;
+    private TextView mDescriptionTextView;
+    private TextView mAddress;
+    private TextView mHostName;
 
 
     @Override
@@ -56,6 +60,17 @@ public class EventDetailFragment extends Fragment {
         Log.v(EventDetailFragment.class.toString(),"onCreateView is called");
         View v = inflater.inflate(R.layout.fragment_event_detail,container,false);
 
+        mEventTextView = (TextView)v.findViewById(R.id.event_title_textview);
+        mTimeTextView = (TextView)v.findViewById(R.id.event_time_textview);
+        mDescriptionTextView = (TextView)v.findViewById(R.id.event_description);
+        mAddress = (TextView)v.findViewById(R.id.event_address_text);
+        mHostName = (TextView)v.findViewById(R.id.event_host_name);
+
+        mEventTextView.setText(mEvent.getEventName());
+        mTimeTextView.setText(mEvent.getTime());
+        mDescriptionTextView.setText(mEvent.getDescription());
+        mAddress.setText(mEvent.getActualAddress());
+        mHostName.setText(mEvent.getHostId() + "");
 
 
         mWhosGoingButton = (Button) v.findViewById(R.id.whos_going_button);

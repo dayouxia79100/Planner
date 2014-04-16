@@ -11,19 +11,16 @@ import com.example.yoloswag.app.helper.DBConnectActivity;
 import com.example.yoloswag.app.helper.SpecialCharacterEscaper;
 import com.example.yoloswag.app.model.CurrentEventSession;
 import com.example.yoloswag.app.model.Event;
-import com.example.yoloswag.app.model.User;
+import com.example.yoloswag.app.model.EventsSingleton;
+import com.example.yoloswag.app.model.MyUser;
 import com.example.yoloswag.app.schedepagertab.SchedulePagerTabActivity;
 
-import android.R.integer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputBinding;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -89,7 +86,7 @@ public class AddNewEventStep2Fragment extends Fragment{
 
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("eventname", SpecialCharacterEscaper.quoteEscaper(mEvent.getEventName())));
-        params.add(new BasicNameValuePair("hostid", Integer.toString(User.getUser().getUid())));
+        params.add(new BasicNameValuePair("hostid", Integer.toString(MyUser.getUser().getUid())));
         params.add(new BasicNameValuePair("address", SpecialCharacterEscaper.quoteEscaper(mEvent.getAddress())));
         params.add(new BasicNameValuePair("time", mEvent.getTime()));
         params.add(new BasicNameValuePair("description", SpecialCharacterEscaper.quoteEscaper(mEvent.getDescription())));
@@ -103,13 +100,18 @@ public class AddNewEventStep2Fragment extends Fragment{
     		@Override
     		public void handleSuccessResponse() {
     			// successfully created product
-                Intent i = new Intent(getActivity(), SchedulePagerTabActivity.class);
-                startActivity(i);
-
-            	// closing this screen
-                getActivity().finish();
+                this.success = true;
     		}
-    	};
+
+            @Override
+            protected void onPostExecute(String file_url) {
+                if (this.success) {
+                    EventsSingleton eventsSingleton = EventsSingleton.get();
+                    eventsSingleton.loadEvents(getActivity(), new SchedulePagerTabActivity());
+                }
+                super.onPostExecute(file_url);
+            }
+        };
     	dbConnect.execute();
 	}
 }

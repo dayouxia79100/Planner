@@ -1,32 +1,19 @@
 package com.example.yoloswag.app.addnewevent2;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
 
 import com.example.yoloswag.app.R;
 import com.example.yoloswag.app.login.LoginFragment;
 import com.example.yoloswag.app.model.CurrentEventSession;
 import com.example.yoloswag.app.model.Event;
-import com.example.yoloswag.app.model.User;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.provider.UserDictionary;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -34,7 +21,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputBinding;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -108,6 +94,7 @@ public class AddNewEventStep1Fragment extends Fragment{
                   .position(mMarkerPosition)
                   .title("Yo whats up"))
                   .setDraggable(true);
+        mCurrentEvent.setMarkerPosition(mMarkerPosition);
         mGoogleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
             @Override
             public void onMarkerDragStart(Marker marker) {

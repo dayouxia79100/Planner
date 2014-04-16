@@ -5,13 +5,13 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.yoloswag.app.R;
 import com.example.yoloswag.app.helper.DBConnectActivity;
 import com.example.yoloswag.app.model.EventsSingleton;
+import com.example.yoloswag.app.model.MyUser;
 import com.example.yoloswag.app.model.User;
 import com.example.yoloswag.app.schedepagertab.SchedulePagerTabActivity;
 import com.example.yoloswag.app.signup.SignupActivity;
@@ -25,7 +25,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -104,7 +103,7 @@ public class LoginFragment extends Fragment{
 				JSONObject json = this.getJsonObject();
 				try {
 					JSONObject userInfo = json.getJSONArray(TAG_USERINFO).getJSONObject(0);
-					mUser = User.getUser();
+					mUser = MyUser.getUser();
 					mUser.setUid(userInfo.getInt(TAG_UID));
 					mUser.setName(userInfo.getString(TAG_NAME));
 					mUser.setEmail(userInfo.getString(TAG_EMAIL));
@@ -121,6 +120,7 @@ public class LoginFragment extends Fragment{
 			@Override
 			protected void onPostExecute(String file_url) {
 				if (this.success) {
+                    EventsSingleton.clear();
 					EventsSingleton eventsSingleton = EventsSingleton.get();
 					eventsSingleton.loadEvents(getActivity(), new SchedulePagerTabActivity());
 				}

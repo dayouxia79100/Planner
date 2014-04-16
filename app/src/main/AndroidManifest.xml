@@ -90,7 +90,6 @@
                 android:value=".schedepagertab.SchedulePagerTabActivity" />
         </activity>
 
-
         <activity android:name=".whosgoing.WhosGoingActivity"/>
 
 

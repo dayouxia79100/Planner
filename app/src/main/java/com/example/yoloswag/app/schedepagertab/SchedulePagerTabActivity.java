@@ -20,7 +20,6 @@ import com.example.yoloswag.app.addnewevent2.AddEventActivity;
 import com.example.yoloswag.app.eventlist.ListFragmentYo1;
 import com.example.yoloswag.app.eventlist.ListFragmentYo2;
 import com.example.yoloswag.app.eventlist.ListFragmentYo3;
-import com.example.yoloswag.app.newmodule.addevent.AddNewEventActivity;
 
 /**
  * Created by dayouxia on 2/13/14.
@@ -130,6 +129,12 @@ public class SchedulePagerTabActivity extends FragmentActivity {
         public ScheduleAdapter(FragmentManager fm){
             super(fm);
         }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+
         @Override
         public Fragment getItem(int i) {
 
