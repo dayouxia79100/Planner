@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yoloswag.app.R;
-import com.example.yoloswag.app.newmodule.addevent.AddNewEventFragment;
-import com.example.yoloswag.app.newmodule.addevent.AddNewEventFragment2;
+import com.viewpagerindicator.IconPageIndicator;
+import com.viewpagerindicator.IconPagerAdapter;
 
 /**
  * Created by dayouxia on 4/10/14.
@@ -20,6 +20,7 @@ public class AddEventFragment extends Fragment {
 
 
     private ViewPager mViewPager;
+    private IconPageIndicator mIndicator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,8 +28,13 @@ public class AddEventFragment extends Fragment {
         mViewPager = (ViewPager)v.findViewById(R.id.pager_content);
 
 
+
         final AddEventPagerAdapter adapter = new AddEventPagerAdapter(getFragmentManager());
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+        mViewPager.setAdapter(adapter);
+        mIndicator = (IconPageIndicator)v.findViewById(R.id.indicator);
+        mIndicator.setViewPager(mViewPager);
+        mIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -45,15 +51,19 @@ public class AddEventFragment extends Fragment {
             }
         });
 
-        mViewPager.setAdapter(adapter);
-
 
 
         return v;
     }
 
 
-    private class AddEventPagerAdapter extends FragmentPagerAdapter{
+    private class AddEventPagerAdapter extends FragmentPagerAdapter implements IconPagerAdapter{
+
+        final int[] ICONS = new int[] {
+                R.drawable.page1_group,
+                R.drawable.page2_group
+
+        };
 
         public AddEventPagerAdapter(FragmentManager fm ){
             super(fm);
@@ -83,5 +93,12 @@ public class AddEventFragment extends Fragment {
         public int getCount() {
             return 2;
         }
+
+        @Override
+        public int getIconResId(int i) {
+            return ICONS[i];
+        }
     }
+
+
 }
