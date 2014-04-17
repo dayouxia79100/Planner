@@ -2,6 +2,6 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_selected="true" android:drawable="@drawable/ic_page2_green" />
-    <item android:drawable="@drawable/ic_page2_gray" />
+    <item android:state_selected="true" android:drawable="@drawable/pic2" />
+    <item android:drawable="@drawable/pic2_gray" />
 </selector>

@@ -91,7 +91,6 @@ public class ListFragmentYo1 extends Fragment {
             header.setTitle(headerTitle);
             cardx.addCardHeader(header);
 
-
             cardx.title = currentEvent.getDescription();
             cardx.secondaryTitle = currentEvent.getTime();
             cardx.count = i;
@@ -99,8 +98,6 @@ public class ListFragmentYo1 extends Fragment {
 
 
         }
-
-
 
         CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(getActivity(),cards);
         mCardArrayAdapter.setInnerViewTypeCount(1);
@@ -168,7 +165,6 @@ public class ListFragmentYo1 extends Fragment {
             setOnClickListener(new OnCardClickListener() {
                 @Override
                 public void onClick(Card card, View view) {
-                    Toast.makeText(getContext(), "Click Listener card=" + getTitle(), Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(), EventDetailActivity.class);
                     i.putExtra(EXTRA_EVENT, currentEvent);
                     startActivity(i);

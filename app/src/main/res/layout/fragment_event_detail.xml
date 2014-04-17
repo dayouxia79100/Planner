@@ -4,7 +4,10 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:padding="5dp">
+              android:padding="5dp"
+              android:background="#54B98F"
+
+    >
 
 
     <LinearLayout
@@ -14,23 +17,16 @@
 
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:layout_marginBottom="12.5dp"
             android:text="Wine tasting"
-            android:id="@+id/event_title_textview"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Time"
-            android:id="@+id/event_time_textview"/>
-    </LinearLayout>
+            android:id="@+id/event_title_textview"
+            android:textSize="30sp"
+            android:textColor="#EEEEEE"
+            android:gravity="center"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
     </LinearLayout>
 
     <LinearLayout
@@ -38,18 +34,44 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/event_host_name"
-            android:text="Host name"/>
+            android:text="Time"
+            android:id="@+id/event_time_textview"
+            android:textColor="#EEEEEE"
+            android:textSize="22.5sp"
+            android:layout_gravity="left"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="7.5dp"/>
+        
+
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Address"
-            android:id="@+id/event_address_text"/>
+            android:textSize="22.5sp"
+            android:id="@+id/event_address_text"
+            android:textColor="#EEEEEE"
+            android:layout_gravity="left"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="7.5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:id="@+id/event_description"
+            android:textColor="#EEEEEE"
+            android:textSize="22.5sp"
+            android:layout_gravity="left"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="7.5dp"/>
         </LinearLayout>
+
 
     <fragment
         android:layout_width="match_parent"
@@ -58,15 +80,12 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:id="@+id/event_description"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="7.5dp">
 
         <Button
             android:layout_width="0dp"
@@ -74,13 +93,21 @@
             android:layout_weight="1"
             android:id="@+id/whos_going_button"
             android:text="who is going?"
+            android:textColor="#EEEEEE"
+            style="?android:attr/borderlessButtonStyle"
             />
+        <TextView
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:background="#EEEEEE"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:id="@+id/what_to_bring_button"
-            android:text="Things to bring"/>
+            android:textColor="#EEEEEE"
+            android:text="Things to bring"
+            style="?android:attr/borderlessButtonStyle"/>
 
         </LinearLayout>
 </LinearLayout>

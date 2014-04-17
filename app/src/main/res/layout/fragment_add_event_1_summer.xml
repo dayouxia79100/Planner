@@ -61,41 +61,18 @@
         android:singleLine="true"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="17.5dp"/>
+
+
+
     <TimePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/time_picker"/>
 
 
-    <com.squareup.timessquare.CalendarPickerView
-        android:id="@+id/calendar_view"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_gravity="center"
-        />
 
-    <com.google.android.gms.maps.MapView
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_gravity="center"
-        android:id="@+id/map"/>
     
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="When is it?" />
 
-    <EditText
-        android:id="@+id/event_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="17.5dp"
-        android:background="@drawable/rect_textedit"
-        android:singleLine="true"
-        android:layout_gravity="center_horizontal"/>
     
     <CheckBox
         android:id="@+id/allow_guest_invite_checkBox"

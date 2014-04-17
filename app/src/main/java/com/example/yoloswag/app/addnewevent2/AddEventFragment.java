@@ -61,7 +61,8 @@ public class AddEventFragment extends Fragment {
 
         final int[] ICONS = new int[] {
                 R.drawable.page1_group,
-                R.drawable.page2_group
+                R.drawable.page2_group,
+                R.drawable.page3_group
 
         };
 
@@ -83,6 +84,8 @@ public class AddEventFragment extends Fragment {
                     return new AddNewEventStep1Fragment();
                 case 1:
                     return new AddNewEventStep2Fragment();
+                case 2:
+                    return new AddNewEventStep3Fragment();
             }
             return null;
 
@@ -91,7 +94,7 @@ public class AddEventFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override

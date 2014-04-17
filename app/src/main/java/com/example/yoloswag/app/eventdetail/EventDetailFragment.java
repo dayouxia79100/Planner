@@ -95,13 +95,13 @@ public class EventDetailFragment extends Fragment {
         mTimeTextView = (TextView)v.findViewById(R.id.event_time_textview);
         mDescriptionTextView = (TextView)v.findViewById(R.id.event_description);
         mAddress = (TextView)v.findViewById(R.id.event_address_text);
-        mHostName = (TextView)v.findViewById(R.id.event_host_name);
+        //mHostName = (TextView)v.findViewById(R.id.event_host_name);
 
         mEventTextView.setText(mEvent.getEventName());
         mTimeTextView.setText(mEvent.getTime());
         mDescriptionTextView.setText(mEvent.getDescription());
         mAddress.setText(mEvent.getActualAddress());
-        mHostName.setText(mEvent.getHostId() + "");
+//        mHostName.setText(mEvent.getHostId() + "");
 
 
         mWhosGoingButton = (Button) v.findViewById(R.id.whos_going_button);

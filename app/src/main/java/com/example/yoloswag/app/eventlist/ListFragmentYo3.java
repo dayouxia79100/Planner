@@ -168,7 +168,6 @@ public class ListFragmentYo3 extends Fragment {
             setOnClickListener(new OnCardClickListener() {
                 @Override
                 public void onClick(Card card, View view) {
-                    Toast.makeText(getContext(), "Click Listener card=" + getTitle(), Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(), EventDetailActivity.class);
                     i.putExtra(EXTRA_EVENT, currentEvent);
                     startActivity(i);

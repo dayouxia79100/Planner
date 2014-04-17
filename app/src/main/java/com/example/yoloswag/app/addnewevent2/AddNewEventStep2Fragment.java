@@ -1,118 +1,138 @@
 package com.example.yoloswag.app.addnewevent2;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
-import com.example.yoloswag.app.R;
-import com.example.yoloswag.app.helper.DBConnectActivity;
-import com.example.yoloswag.app.helper.SpecialCharacterEscaper;
-import com.example.yoloswag.app.model.CurrentEventSession;
-import com.example.yoloswag.app.model.Event;
-import com.example.yoloswag.app.model.EventsSingleton;
-import com.example.yoloswag.app.model.MyUser;
-import com.example.yoloswag.app.schedepagertab.SchedulePagerTabActivity;
-
-import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
-// by summer
+import com.example.yoloswag.app.R;
+import com.example.yoloswag.app.model.CurrentEventSession;
+import com.example.yoloswag.app.model.Event;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.timessquare.CalendarPickerView;
 
-public class AddNewEventStep2Fragment extends Fragment{
-	
-	private Button doneButton;
-	private TextView eventNameTextView;
-	private EditText inputGuestList;
-	private EditText inputItemList;
-	private String guestList;
-	private String itemList;
-	private Event mEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-	private static String processing_message = "Creating event...";
-	private static String url_create_event = DBConnectActivity.connect_url_header + "create_event.php";
+/**
+ * Created by dayouxia on 4/17/14.
+ */
+public class AddNewEventStep2Fragment extends Fragment {
+
+
+    private Event mCurrentEvent;
+
+    private Location mLocation;
+
+    private GoogleMap mGoogleMap;
+    private MapView mMapView;
+    private UiSettings mUiSettings;
+    private LatLng mMarkerPosition = new LatLng(40.0000,-83.0145);
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mEvent = CurrentEventSession.get().getEvent();
+        mCurrentEvent = CurrentEventSession.get().getEvent();
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_add_event_2_summer,container,false);
+
+
+        /*
+        date picker is here.
+         */
+        Calendar nextYear = Calendar.getInstance();
+        nextYear.add(Calendar.YEAR, 1);
+
+        final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ");
+        CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar_view);
+        Date today = new Date();
+        calendar.init(today, nextYear.getTime())
+                .withSelectedDate(today);
+        calendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(Date date) {
+                String calendarTime = format.format(date);
+                mCurrentEvent.setCalendarTime(calendarTime);
+            }
+
+            @Override
+            public void onDateUnselected(Date date) {
+
+            }
+        });
+
+
+        /*
+        Google map starts here.
+         */
+
+        mMapView = (MapView) v.findViewById(R.id.map);
+        mMapView.onCreate(savedInstanceState);
+        // Gets to GoogleMap from the MapView and does initialization stuff
+        if (mMapView != null) {
+            mGoogleMap = mMapView.getMap();
+            mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
+            mGoogleMap.setMyLocationEnabled(true);
+        }
+
+        mUiSettings = mGoogleMap.getUiSettings();
+        mUiSettings.setCompassEnabled(false);
+        mUiSettings.setRotateGesturesEnabled(false);
+        mUiSettings.setTiltGesturesEnabled(false);
+        mUiSettings.setZoomControlsEnabled(false);
+
+
+        mLocation = mGoogleMap.getMyLocation();
+
+        mGoogleMap.addMarker(new MarkerOptions()
+                .position(mMarkerPosition)
+                .title("Yo whats up"))
+                .setDraggable(true);
+        mCurrentEvent.setMarkerPosition(mMarkerPosition);
+        mGoogleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDrag(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                mMarkerPosition = marker.getPosition();
+                mCurrentEvent.setMarkerPosition(mMarkerPosition);
+            }
+        });
+
+
+
+        return v;
+    }
 
     @Override
     public void onResume() {
         super.onResume();
-        mEvent = CurrentEventSession.get().getEvent();
+        mMapView.onResume();
     }
 
     @Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_add_event_2_summer, container,false);
-		eventNameTextView = (TextView)v.findViewById(R.id.event_name_textView);
-		eventNameTextView.setText(mEvent.getEventName());
-		inputGuestList = (EditText)v.findViewById(R.id.guest_list);
-		inputItemList = (EditText)v.findViewById(R.id.item_list);
-		
-		doneButton = (Button)v.findViewById(R.id.done_button);
-		doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleDone();
-            }
-        });
-		
-		return v;
-	}
-	
-	public void setEvent(Event event) { 
-		this.mEvent = event;
-	}
-	
-	private void handleDone() {
-		guestList = inputGuestList.getText().toString();
-		itemList = inputItemList.getText().toString();
-        // convert actual address + marker position to address
-        mEvent.convertAddress();
-        mEvent.convertTime();
-
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("eventname", SpecialCharacterEscaper.quoteEscaper(mEvent.getEventName())));
-        params.add(new BasicNameValuePair("hostid", Integer.toString(MyUser.getUser().getUid())));
-        params.add(new BasicNameValuePair("address", SpecialCharacterEscaper.quoteEscaper(mEvent.getAddress())));
-        params.add(new BasicNameValuePair("time", mEvent.getTime()));
-        params.add(new BasicNameValuePair("description", SpecialCharacterEscaper.quoteEscaper(mEvent.getDescription())));
-        if (mEvent.getAllowGuestInvite())
-        	params.add(new BasicNameValuePair("allowguestinvite", "1"));
-        else
-        	params.add(new BasicNameValuePair("allowguestinvite", "0"));
-        params.add(new BasicNameValuePair("guestlist", SpecialCharacterEscaper.quoteEscaper(guestList)));
-        params.add(new BasicNameValuePair("itemlist", SpecialCharacterEscaper.quoteEscaper(itemList)));
-    	DBConnectActivity dbConnect = new DBConnectActivity(getActivity(), params, url_create_event, "POST", processing_message) {
-    		@Override
-    		public void handleSuccessResponse() {
-    			// successfully created product
-                this.success = true;
-    		}
-
-            @Override
-            protected void onPostExecute(String file_url) {
-                if (this.success) {
-                    EventsSingleton eventsSingleton = EventsSingleton.get();
-                    eventsSingleton.loadEvents(getActivity(), new SchedulePagerTabActivity());
-                }
-                super.onPostExecute(file_url);
-            }
-        };
-    	dbConnect.execute();
-	}
+    public void onDestroy() {
+        super.onDestroy();
+        mMapView.onDestroy();
+    }
 }

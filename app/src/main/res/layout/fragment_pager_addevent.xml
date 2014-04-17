@@ -14,8 +14,9 @@
 
     <com.viewpagerindicator.IconPageIndicator
         android:id="@+id/indicator"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:layout_width="match_parent"
+        android:background="#54B98F"
         />
 
 

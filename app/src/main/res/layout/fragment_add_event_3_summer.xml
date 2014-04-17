@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#54B98F">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Invite Friends"
+        android:layout_marginBottom="17.5dp"
+        android:layout_marginTop="17.5dp"
+        android:textColor="#EEEEEE"
+        android:textSize="30sp"/>
+
+
+    <EditText
+        android:id="@+id/guest_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Who is going?"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="17.5dp"
+        android:background="@drawable/rect_textedit"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="17.5dp"
+        android:layout_marginTop="16.5dp"/>
+
+
+
+    <EditText
+        android:id="@+id/item_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="What to bring?"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="17.5dp"
+        android:background="@drawable/rect_textedit"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="17.5dp">
+
+        <requestFocus />
+    </EditText>
+
+
+
+
+    <Button
+        android:id="@+id/done_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Event"
+        android:textColor="#EEEEEE"
+        android:textSize="25sp"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_marginTop="16.5dp"
+        />
+
+</LinearLayout>

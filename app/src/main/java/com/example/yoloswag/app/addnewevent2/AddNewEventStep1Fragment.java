@@ -44,14 +44,8 @@ public class AddNewEventStep1Fragment extends Fragment{
 	private EditText inputEventAddress;
 	private CheckBox inputAllowGuestInvite;
     private Event mCurrentEvent;
-
-    private Location mLocation;
-
-    private GoogleMap mGoogleMap;
-    private MapView mMapView;
-    private UiSettings mUiSettings;
-    private LatLng mMarkerPosition = new LatLng(40.0000,-83.0145);
     private TimePicker mTimePicker;
+
 
 
     @Override
@@ -61,19 +55,6 @@ public class AddNewEventStep1Fragment extends Fragment{
 
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mMapView.onResume();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mMapView.onDestroy();
-    }
-
     Time time;
 
     @Override
@@ -81,31 +62,6 @@ public class AddNewEventStep1Fragment extends Fragment{
 			Bundle savedInstanceState) {
         Log.v(LoginFragment.class.toString(), "onCreateView is called");
         View v = inflater.inflate(R.layout.fragment_add_event_1_summer, container, false);
-
-        /*
-        date picker is here.
-         */
-        Calendar nextYear = Calendar.getInstance();
-        nextYear.add(Calendar.YEAR, 1);
-
-        final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ");
-        CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar_view);
-        Date today = new Date();
-        calendar.init(today, nextYear.getTime())
-                .withSelectedDate(today);
-        calendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(Date date) {
-                String calendarTime = format.format(date);
-                mCurrentEvent.setCalendarTime(calendarTime);
-            }
-
-            @Override
-            public void onDateUnselected(Date date) {
-
-            }
-        });
-
 
         /*
         Time picker is here.
@@ -121,56 +77,8 @@ public class AddNewEventStep1Fragment extends Fragment{
         });
 
         /*
-        Google map starts here.
-         */
-
-        mMapView = (MapView) v.findViewById(R.id.map);
-        mMapView.onCreate(savedInstanceState);
-        // Gets to GoogleMap from the MapView and does initialization stuff
-        if (mMapView != null) {
-            mGoogleMap = mMapView.getMap();
-            mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
-            mGoogleMap.setMyLocationEnabled(true);
-        }
-
-        mUiSettings = mGoogleMap.getUiSettings();
-        mUiSettings.setCompassEnabled(false);
-        mUiSettings.setRotateGesturesEnabled(false);
-        mUiSettings.setTiltGesturesEnabled(false);
-        mUiSettings.setZoomControlsEnabled(false);
-
-
-        mLocation = mGoogleMap.getMyLocation();
-
-        mGoogleMap.addMarker(new MarkerOptions()
-                  .position(mMarkerPosition)
-                  .title("Yo whats up"))
-                  .setDraggable(true);
-        mCurrentEvent.setMarkerPosition(mMarkerPosition);
-        mGoogleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
-            @Override
-            public void onMarkerDragStart(Marker marker) {
-
-            }
-
-            @Override
-            public void onMarkerDrag(Marker marker) {
-
-            }
-
-            @Override
-            public void onMarkerDragEnd(Marker marker) {
-                mMarkerPosition = marker.getPosition();
-                mCurrentEvent.setMarkerPosition(mMarkerPosition);
-            }
-        });
-
-
-        /*
         event name starts here
          */
-
-
 
         inputEventName = (EditText) v.findViewById(R.id.event_name_editText);
         inputEventName.addTextChangedListener(new TextWatcher() {
@@ -238,7 +146,6 @@ public class AddNewEventStep1Fragment extends Fragment{
         /*
         allow guest invite starts here
          */
-
 
             inputAllowGuestInvite = (CheckBox) v.findViewById(R.id.allow_guest_invite_checkBox);
             inputAllowGuestInvite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

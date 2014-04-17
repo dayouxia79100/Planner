@@ -13,7 +13,7 @@ import com.example.yoloswag.app.helper.DBConnectActivity;
 import com.example.yoloswag.app.model.EventsSingleton;
 import com.example.yoloswag.app.model.MyUser;
 import com.example.yoloswag.app.model.User;
-import com.example.yoloswag.app.schedepagertab.SchedulePagerTabActivity;
+import com.example.yoloswag.app.schedulepagertab.SchedulePagerTabActivity;
 import com.example.yoloswag.app.signup.SignupActivity;
 
 import android.app.AlertDialog;
