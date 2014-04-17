@@ -216,6 +216,13 @@
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
 
+    <!-- join event -->
+    <string name="join_event_title">Join Event</string>
+    <string name="join_event_message">Do you want to go to this event?</string>
+    <string name="accept_event">Going</string>
+    <string name="pending_event">Cancel</string>
+    <string name="decline_event">No</string>
+
 
 
 </resources>

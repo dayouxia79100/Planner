@@ -24,6 +24,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+
 // by summer
 
 public class AddNewEventStep3Fragment extends Fragment{
@@ -99,6 +102,7 @@ public class AddNewEventStep3Fragment extends Fragment{
     		public void handleSuccessResponse() {
     			// successfully created product
                 this.success = true;
+
     		}
 
             @Override
@@ -106,6 +110,9 @@ public class AddNewEventStep3Fragment extends Fragment{
                 if (this.success) {
                     EventsSingleton eventsSingleton = EventsSingleton.get();
                     eventsSingleton.loadEvents(getActivity(), new SchedulePagerTabActivity());
+                    Crouton.makeText(getActivity(), "Event created successfully!", Style.CONFIRM).show();
+                }else{
+                    Crouton.makeText(getActivity(), "What's your problem?????", Style.ALERT).show();
                 }
                 super.onPostExecute(file_url);
             }

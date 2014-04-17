@@ -22,6 +22,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+
+import de.keyboardsurfer.android.widget.crouton.Configuration;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+
 /**
  * Created by dayouxia on 2/13/14.
  */
@@ -37,6 +42,11 @@ public class SignupFragment extends Fragment{
     private static String url_create_user = DBConnectActivity.connect_url_header + "create_user.php";
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
 
     @Override
