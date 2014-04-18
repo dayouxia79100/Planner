@@ -1,6 +1,8 @@
 package com.example.yoloswag.app.eventlist;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,25 +15,38 @@ import android.widget.Toast;
 
 import com.example.yoloswag.app.R;
 import com.example.yoloswag.app.eventdetail.EventDetailActivity;
+import com.example.yoloswag.app.helper.DBConnectActivity;
 import com.example.yoloswag.app.model.Event;
 import com.example.yoloswag.app.model.EventsSingleton;
+import com.example.yoloswag.app.model.MyUser;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.view.CardListView;
 
-/**
- * Created by dayouxia on 3/30/14.
- */
+
 public class ListFragmentYo2 extends Fragment {
 
     public static final String EXTRA_TAB_NUM = "tabnumber";
     private int tabnumber;
     private ArrayList<Event> mEvent2List;
+
+    private static final String TAG_UID = "uid";
+    private static final String TAG_EID = "eid";
+    private static final String TAG_STATUS = "status";
+    private static final String TAG_NAME = "name";
+    private static final String url_get_user_name = DBConnectActivity.connect_url_header + "get_user_name.php";
+    private static final String url_update_event_status = DBConnectActivity.connect_url_header + "update_event_status.php";
+    private static final String processing_message = "Loading...";
 
     public static ListFragmentYo2 newInstance(int i){
         ListFragmentYo2 fragment = new ListFragmentYo2();
@@ -81,17 +96,20 @@ public class ListFragmentYo2 extends Fragment {
         ArrayList<Card> cards = new ArrayList<Card>();
         for (int i = 0; i < mEvent2List.size(); i++) {
 
-            CardExample2 cardx = new CardExample2(this.getActivity());
+            CardExample2 cardx = new CardExample2(this.getActivity(), mEvent2List.get(i));
             CardHeader header = new CardHeader(getActivity());
-            String headerTitle = mEvent2List.get(0).getEventName();
+
+            String headerTitle = mEvent2List.get(i).getEventName();
+            Event currentEvent = mEvent2List.get(i);
+
             //Set the header title
             header.setTitle(headerTitle);
             cardx.addCardHeader(header);
 
 
-            cardx.title = "Come taste some wine!  " + i;
-            cardx.secondaryTitle = "Address is : some street yo" + i;
-            cardx.count = i + 2;
+            cardx.title = currentEvent.getDescription();
+            cardx.secondaryTitle = currentEvent.getTime();
+            cardx.count = i;
             cards.add(cardx);
 
 
@@ -117,6 +135,7 @@ public class ListFragmentYo2 extends Fragment {
 
     public class MyCardArrayAdapter extends CardArrayAdapter{
 
+
         /**
          * Constructor
          *
@@ -135,6 +154,8 @@ public class ListFragmentYo2 extends Fragment {
 
     public class CardExample2 extends Card{
 
+        public static final String EXTRA_EVENT = "event";
+
         protected TextView mTitle;
         protected TextView mSecondaryTitle;
         protected Button mImGoingButton;
@@ -142,10 +163,12 @@ public class ListFragmentYo2 extends Fragment {
 
         protected String title;
         protected String secondaryTitle;
+        private Event currentEvent;
 
 
-        public CardExample2(Context context) {
+        public CardExample2(Context context, Event event) {
             super(context, R.layout.card_inner_content);
+            currentEvent = event;
             init();
         }
 
@@ -155,13 +178,15 @@ public class ListFragmentYo2 extends Fragment {
             CardHeader header = new CardHeader(getActivity());
             addCardHeader(header);
 
+
             //Add ClickListener
             setOnClickListener(new OnCardClickListener() {
                 @Override
                 public void onClick(Card card, View view) {
-                    Toast.makeText(getContext(), "Click Listener card=" + getTitle(), Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(), EventDetailActivity.class);
+                    i.putExtra(EXTRA_EVENT, currentEvent);
                     startActivity(i);
+
                 }
             });
 
@@ -177,15 +202,60 @@ public class ListFragmentYo2 extends Fragment {
             mSecondaryTitle = (TextView) parent.findViewById(R.id.carddemo_myapps_main_inner_secondaryTitle);
             mImGoingButton = (Button) parent.findViewById(R.id.going_button);
 
-            if(mImGoingButton != null){
-                mImGoingButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(getActivity(), EventDetailActivity.class);
-                        startActivity(i);
-                    }
-                });
+
+            final Button addButton = (Button)parent.findViewById(R.id.going_button);
+            String statusString = "";
+            switch (currentEvent.getStatus()) {
+                case 0:
+                    statusString = "Pending";
+                    break;
+                case -1:
+                    statusString = "Declined";
+                    break;
+                case 1:
+                    statusString = "Going";
+                    break;
             }
+            //addButton.setText(statusString);
+            addButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle(R.string.join_event_title)
+                            .setMessage(R.string.join_event_message)
+                            .setPositiveButton(R.string.accept_event, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //addButton.setText("Going");
+                                    updateStatusOnDB(1);
+                                    EventsSingleton.get().addToMySchedule(currentEvent);
+                                    Crouton.makeText(getActivity(), "Event added to my schedule", Style.INFO).show();
+                                    view.setBackground(getResources().getDrawable(R.drawable.ic_calendar_check));
+
+                                }
+                            })
+
+                            .setNegativeButton(R.string.decline_event, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                   // addButton.setText("Declined");
+                                    updateStatusOnDB(-1);
+                                    EventsSingleton.get().removeFromMySchedule(currentEvent);
+                                    Crouton.makeText(getActivity(), "Event removed from my schedule", Style.INFO).show();
+                                    view.setBackground(getResources().getDrawable(R.drawable.ic_calendar_gray));
+                                }
+                            })
+                            .show();
+                }
+
+                private void updateStatusOnDB(int status) {
+                    List<NameValuePair> params = new ArrayList<NameValuePair>();
+                    params.add(new BasicNameValuePair(TAG_EID, Integer.toString(currentEvent.getEid())));
+                    params.add(new BasicNameValuePair(TAG_UID, Integer.toString(MyUser.getUser().getUid())));
+                    params.add(new BasicNameValuePair(TAG_STATUS, Integer.toString(status)));
+                    DBConnectActivity dbConnect = new DBConnectActivity(getActivity(), params, url_update_event_status, "POST", processing_message);
+                    dbConnect.execute();
+                }
+            });
+
 
 
             if (mTitle != null)

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,26 +12,22 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-
+import com.example.yoloswag.app.model.User;
 
 import java.util.ArrayList;
 
-/**
- * Created by dayouxia on 3/26/14.
- */
+
 public class WhosGoingFragment extends ListFragment {
 
-    private ArrayList<String> mGoingList = new ArrayList<String>();
+    private ArrayList<User> mGuestList = new ArrayList<User>();
+    private ArrayList<String> mGuestName = new ArrayList<String>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mGoingList.add("Charlie");
-        mGoingList.add("Summer");
-        mGoingList.add("Ming");
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-        setListAdapter(new WhosGoingAdapter(mGoingList));
+        setListAdapter(new WhosGoingAdapter(mGuestName));
     }
 
 
@@ -53,7 +50,7 @@ public class WhosGoingFragment extends ListFragment {
 
         @Override
         public int getCount() {
-            return mGoingList.size();
+            return mGuestList.size();
 
         }
 
@@ -67,12 +64,20 @@ public class WhosGoingFragment extends ListFragment {
             }
 
             TextView textView = (TextView)convertView.findViewById(android.R.id.text1);
-            textView.setText(mGoingList.get(position));
+            textView.setText(mGuestName.get(position));
 
 
             return convertView;
         }
 
 
+    }
+    
+    public void setGuestList(ArrayList<User> guestlist) {
+    	mGuestList = guestlist;
+    	mGuestName = new ArrayList<String>();
+    	for (int i = 0; i < guestlist.size(); i++) {
+    		mGuestName.add(guestlist.get(i).getName());
+    	}
     }
 }

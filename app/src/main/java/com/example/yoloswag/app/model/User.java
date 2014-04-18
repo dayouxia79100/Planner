@@ -1,20 +1,22 @@
 package com.example.yoloswag.app.model;
 
-public class User {
-	private static User user;
+import java.io.Serializable;
+
+public class User implements Serializable{
+
+	private static final long serialVersionUID = -5175438735946162373L;
 	private int uid;
 	private String name;
 	private String email;
 	private String phone;
 	
-	private User() {
-		
-	}
+	public User() {}
 	
-	public static User getUser() {
-		if (user == null) 
-			user = new User();
-		return user;
+	public User(int uid, String name, String email, String phone) {
+		this.uid = uid;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
 	}
 	
 	public void setUid(int uid) {

@@ -7,15 +7,17 @@ import java.io.Serializable;
 
 
 public class Event implements Serializable {
-	/**
-	 * 
-	 */
+
+
 	private static final long serialVersionUID = 7258590786785197404L;
 	private int eid;
 	private String eventname;
 	private int hostid;
 	private String address;
 	private String time;
+    private String clockTime;
+    private String calendarTime;
+
 	private String description;
 	private boolean allowGuestInvite;
 	private int status;
@@ -23,6 +25,12 @@ public class Event implements Serializable {
 
     // note address is (address + LatLng)
     private String actualAddress;
+    public void convertTime(){
+        time = calendarTime + clockTime;
+    }
+
+
+
     public void convertAddress(){
         address = actualAddress + "$"+markerPosition.latitude + "$"+markerPosition.longitude;
     }
@@ -101,7 +109,8 @@ public class Event implements Serializable {
 	}
 	
 	public String getTime() {
-		return this.time;
+
+        return this.time;
 	}
 	
 	public void setTime(String time) {
@@ -146,5 +155,21 @@ public class Event implements Serializable {
 
     public void setActualAddress(String actualAddress) {
         this.actualAddress = actualAddress;
+    }
+
+    public String getCalendarTime() {
+        return calendarTime;
+    }
+
+    public void setCalendarTime(String calendarTime) {
+        this.calendarTime = calendarTime;
+    }
+
+    public String getClockTime() {
+        return clockTime;
+    }
+
+    public void setClockTime(String clockTime) {
+        this.clockTime = clockTime;
     }
 }

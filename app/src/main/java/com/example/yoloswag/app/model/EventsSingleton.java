@@ -1,7 +1,6 @@
 package com.example.yoloswag.app.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -10,17 +9,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.bool;
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.example.yoloswag.app.helper.DBConnectActivity;
 
-/**
- * Created by dayouxia on 2/13/14.
- */
 public class EventsSingleton {
 
     private static EventsSingleton sEvents;
@@ -46,7 +40,7 @@ public class EventsSingleton {
     private static final String TAG_STATUS = "status";
 
     private EventsSingleton (){
-    	uid = User.getUser().getUid();
+    	uid = MyUser.getUser().getUid();
         myScheduleEvents = new ArrayList<Event>();
         invitedEvents = new ArrayList<Event>();
         hostingEvents = new ArrayList<Event>();
@@ -58,7 +52,13 @@ public class EventsSingleton {
         }
         return sEvents;
     }
-    
+
+
+    public static void clear(){
+        if(sEvents != null){
+            sEvents = null;
+        }
+    }
     public void setInvitedEvents(ArrayList<Event> events) {
     	this.invitedEvents = events;
     }
@@ -67,9 +67,20 @@ public class EventsSingleton {
     	this.hostingEvents = events;
     }
     
+    public void addToMySchedule(Event event) {
+    	if (!this.myScheduleEvents.contains(event))
+    		this.myScheduleEvents.add(event);
+    }
+    
+    public void removeFromMySchedule(Event event) {
+    	if (this.myScheduleEvents.contains(event))
+    		this.myScheduleEvents.remove(event);
+    }
+    
     public void loadEvents(FragmentActivity mActivity, final FragmentActivity nextActivity) {
     	invitedEvents.clear();
     	hostingEvents.clear();
+        myScheduleEvents.clear();
     	List<NameValuePair> params = new ArrayList<NameValuePair>();
     	Log.d("uid in events", Integer.toString(uid));
         params.add(new BasicNameValuePair(TAG_UID, Integer.toString(uid)));
@@ -101,6 +112,9 @@ public class EventsSingleton {
 
 						// adding HashList to ArrayList
 						invitedEvents.add(event);
+						if (status == 1) {
+							myScheduleEvents.add(event);
+						}
 					}
 					for (int i = 0; i < hosting_events.length(); i++) {
 						JSONObject c = hosting_events.getJSONObject(i);
@@ -121,6 +135,7 @@ public class EventsSingleton {
 
 						// adding HashList to ArrayList
 						hostingEvents.add(event);
+						myScheduleEvents.add(event);
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -174,6 +189,9 @@ public class EventsSingleton {
 
 						// adding HashList to ArrayList
 						invitedEvents.add(event);
+						if (status == 1) {
+							myScheduleEvents.add(event);
+						}
 					}
 					for (int i = 0; i < hosting_events.length(); i++) {
 						JSONObject c = hosting_events.getJSONObject(i);
@@ -194,6 +212,7 @@ public class EventsSingleton {
 
 						// adding HashList to ArrayList
 						hostingEvents.add(event);
+						myScheduleEvents.add(event);
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();

@@ -203,6 +203,26 @@
     <string name="ok">OK</string>
     <string name="add_event">Add</string>
 
+    <!-- bring item -->
+    <string name="bring_title">Bring an Item</string>
+    <string name="bring_message">Do you want to bring this item?</string>
+    <string name="not_bring_title">Cancel Bringing an Item</string>
+    <string name="not_bring_message">Do you want to cancel bring this item?</string>
+    <string name="bring_button_text">I can bring this item!</string>
+    <string name="cancel_bring_button_text">Cancel bringing this item</string>
+    <string name="no_one_bring_message">No one is bringing this yet.</string>
+
+
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- join event -->
+    <string name="join_event_title">Join Event</string>
+    <string name="join_event_message">Do you want to go to this event?</string>
+    <string name="accept_event">Going</string>
+    <string name="pending_event">Cancel</string>
+    <string name="decline_event">No</string>
+
 
 
 </resources>

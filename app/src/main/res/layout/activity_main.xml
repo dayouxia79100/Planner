@@ -5,9 +5,5 @@
     android:id="@+id/container"
     tools:context="com.example.yoloswag.app.eventlist.MainActivity">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="1"/>
 
 </FrameLayout>

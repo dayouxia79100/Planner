@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#54B98F">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_horizontal"
-        android:text="NEW EVENT" />
+        android:gravity="center_horizontal"
+        android:text="NEW EVENT"
+        android:layout_marginBottom="17.5dp"
+        android:layout_marginTop="17.5dp"
+        android:textColor="#EEEEEE"
+        android:textSize="30sp"
+        />
 
     <EditText
         android:id="@+id/event_name_editText"
         android:hint="What is it called?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
+        android:ems="10"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="17.5dp"
+        android:background="@drawable/rect_textedit"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"
+        >
         <requestFocus />
     </EditText>
 
@@ -24,31 +40,39 @@
         android:hint="What is happening at the event?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" />
+        android:ems="10"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="17.5dp"
+        android:background="@drawable/rect_textedit"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"/>
 
     <EditText
         android:id="@+id/event_address_editText"
         android:hint="Where is the event?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" />
+        android:ems="10"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="17.5dp"
+        android:background="@drawable/rect_textedit"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="17.5dp"/>
 
-    <com.google.android.gms.maps.MapView
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_gravity="center"
-        android:id="@+id/map"/>
-    
-    <TextView
+
+
+    <TimePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="When is it?" />
+        android:id="@+id/time_picker"/>
 
-    <EditText
-        android:id="@+id/event_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" />
+
+
+    
+
     
     <CheckBox
         android:id="@+id/allow_guest_invite_checkBox"
@@ -57,4 +81,7 @@
         android:text="Allow guest to invite" />
 
 
+
+
 </LinearLayout>
+
