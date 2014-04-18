@@ -72,7 +72,7 @@
                 android:value=".schedepagertab.SchedulePagerTabActivity" />
         </activity>
 
-        <activity android:name=".addnewevent2.AddEventActivity"
+        <activity android:name=".addnewevent.AddEventActivity"
             android:parentActivityName=".schedulepagertab.SchedulePagerTabActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

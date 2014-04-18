@@ -184,15 +184,11 @@ public class ListFragmentYo1 extends Fragment {
             mSecondaryTitle = (TextView) parent.findViewById(R.id.carddemo_myapps_main_inner_secondaryTitle);
             mImGoingButton = (Button) parent.findViewById(R.id.going_button);
 
-
-
-
             if (mTitle != null)
                 mTitle.setText(title);
 
             if (mSecondaryTitle != null)
                 mSecondaryTitle.setText(secondaryTitle);
-
 
         }
 

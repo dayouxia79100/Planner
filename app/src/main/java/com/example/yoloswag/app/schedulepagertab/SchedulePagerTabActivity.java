@@ -16,7 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.yoloswag.app.R;
-import com.example.yoloswag.app.addnewevent2.AddEventActivity;
+import com.example.yoloswag.app.addnewevent.AddEventActivity;
 import com.example.yoloswag.app.eventlist.ListFragmentYo1;
 import com.example.yoloswag.app.eventlist.ListFragmentYo2;
 import com.example.yoloswag.app.eventlist.ListFragmentYo3;
