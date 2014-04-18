@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PlannerMockup</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="are_you_going">Are you going?</string>
+    <string name="yes_going">Yes I am going</string>
+    
+    <!-- sign up -->
+    <string name="info_not_complete_alert_title">Need more info</string>
+    <string name="info_not_complete_alert_message">Please fill in all required info before move on.</string>
+    <string name="password_not_matching_alert_title">Passwords not matching</string>
+    <string name="password_not_matching_alert_message">The passwords you entered does not match. Please enter the passwords again.</string>
+    <string name="email_exist_alert_title">Email Exist in System</string>
+    <string name="email_exist_alert_message">The given email has been registered. Please enter another one.</string>
+    
+    <!-- log in -->
+    <string name="login_fail_alert_title">Login Failed</string>
+    <string name="login_fail_alert_message">The user name or password is not correct.</string>
+    
+    <!-- join event -->
+    <string name="join_event_title">Join Event</string>
+    <string name="join_event_message">Do you want to go to this event?</string>
+    <string name="accept_event">Yes</string>
+    <string name="pending_event">Maybe</string>
+    <string name="decline_event">No</string>
+    
+    <!-- bring item -->
+    <string name="bring_title">Bring an Item</string>
+    <string name="bring_message">Do you want to bring this item?</string>
+    <string name="not_bring_title">Cancel Bringing an Item</string>
+    <string name="not_bring_message">Do you want to cancel bring this item?</string>
+    <string name="bring_button_text">I can bring this item!</string>
+    <string name="cancel_bring_button_text">Cancel bringing this item</string>
+    <string name="no_one_bring_message">No one is bringing this yet.</string>
+    
+    <!-- friend list -->
+    <string name="add_friend_button_text">Send Friend Request</string>
+    <string name="confirm_friend_button_text">Confirm Friend Request</string>
+    <string name="remove_friend_button_text">Remove</string>
+    <string name="send_friend_request_title">Send Friend Request</string>
+    <string name="send_friend_request_message">Do you want to send a friend request?</string>
+
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="add_event">Add</string>
+
+</resources>
