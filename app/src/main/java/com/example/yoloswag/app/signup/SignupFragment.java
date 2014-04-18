@@ -27,9 +27,6 @@ import de.keyboardsurfer.android.widget.crouton.Configuration;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
-/**
- * Created by dayouxia on 2/13/14.
- */
 public class SignupFragment extends Fragment{
     
 	private Button mSignupButton;

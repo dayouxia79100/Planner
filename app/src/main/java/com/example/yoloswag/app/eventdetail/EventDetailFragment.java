@@ -37,9 +37,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by dayouxia on 2/14/14.
- */
+
 public class EventDetailFragment extends Fragment {
 
 

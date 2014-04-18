@@ -6,9 +6,7 @@ import android.R.integer;
 
 public class Item implements Serializable{
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1968646824181506979L;
 	
 	private int iid;

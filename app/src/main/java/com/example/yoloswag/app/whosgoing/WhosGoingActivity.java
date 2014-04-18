@@ -8,9 +8,6 @@ import android.util.Log;
 import com.example.yoloswag.app.SingleFragmentActivity;
 import com.example.yoloswag.app.model.User;
 
-/**
- * Created by dayouxia on 3/26/14.
- */
 public class WhosGoingActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {

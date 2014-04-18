@@ -3,9 +3,7 @@ package com.example.yoloswag.app.model;
 import java.io.Serializable;
 
 public class User implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -5175438735946162373L;
 	private int uid;
 	private String name;

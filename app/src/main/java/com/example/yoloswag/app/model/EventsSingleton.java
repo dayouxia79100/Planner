@@ -15,9 +15,6 @@ import android.util.Log;
 
 import com.example.yoloswag.app.helper.DBConnectActivity;
 
-/**
- * Created by dayouxia on 2/13/14.
- */
 public class EventsSingleton {
 
     private static EventsSingleton sEvents;

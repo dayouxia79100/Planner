@@ -13,9 +13,7 @@ import com.example.yoloswag.app.R;
 import com.viewpagerindicator.IconPageIndicator;
 import com.viewpagerindicator.IconPagerAdapter;
 
-/**
- * Created by dayouxia on 4/10/14.
- */
+
 public class AddEventFragment extends Fragment {
 
 

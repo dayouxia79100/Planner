@@ -31,9 +31,7 @@ import com.google.android.gms.internal.ha;
 import com.google.android.gms.internal.m;
 import com.google.android.gms.maps.GoogleMap.CancelableCallback;
 
-/**
- * Created by dayouxia on 4/13/14.
- */
+
 public class ThingsToBringFragment extends ListFragment {
 	
 	private static final String processing_message = "Loading...";

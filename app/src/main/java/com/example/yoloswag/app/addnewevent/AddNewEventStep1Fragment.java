@@ -22,7 +22,7 @@ import android.widget.TimePicker;
 
 import java.sql.Time;
 
-//by summer
+
 
 public class AddNewEventStep1Fragment extends Fragment{
 	

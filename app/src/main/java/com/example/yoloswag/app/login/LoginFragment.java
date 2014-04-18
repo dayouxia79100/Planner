@@ -28,9 +28,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-/**
- * Created by dayouxia on 2/13/14.
- */
 public class LoginFragment extends Fragment{
 
 	private Button mLoginButton;

@@ -22,9 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by dayouxia on 4/17/14.
- */
+
 public class AddNewEventStep2Fragment extends Fragment {
 
 

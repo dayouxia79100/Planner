@@ -1,8 +1,6 @@
 package com.example.yoloswag.app.model;
 
-/**
- * Created by dayouxia on 4/13/14.
- */
+
 public class CurrentEventSession {
     private static CurrentEventSession sCurrentEventSession;
     private static Event mEvent;

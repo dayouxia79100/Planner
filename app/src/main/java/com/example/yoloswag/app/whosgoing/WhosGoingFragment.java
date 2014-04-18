@@ -16,9 +16,7 @@ import com.example.yoloswag.app.model.User;
 
 import java.util.ArrayList;
 
-/**
- * Created by dayouxia on 3/26/14.
- */
+
 public class WhosGoingFragment extends ListFragment {
 
     private ArrayList<User> mGuestList = new ArrayList<User>();

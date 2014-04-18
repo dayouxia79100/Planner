@@ -21,9 +21,7 @@ import com.example.yoloswag.app.eventlist.ListFragmentYo1;
 import com.example.yoloswag.app.eventlist.ListFragmentYo2;
 import com.example.yoloswag.app.eventlist.ListFragmentYo3;
 
-/**
- * Created by dayouxia on 2/13/14.
- */
+
 public class SchedulePagerTabActivity extends FragmentActivity {
 
 

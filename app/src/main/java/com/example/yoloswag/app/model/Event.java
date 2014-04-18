@@ -7,9 +7,8 @@ import java.io.Serializable;
 
 
 public class Event implements Serializable {
-	/**
-	 * 
-	 */
+
+
 	private static final long serialVersionUID = 7258590786785197404L;
 	private int eid;
 	private String eventname;

@@ -24,9 +24,7 @@ import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.view.CardListView;
 
-/**
- * Created by dayouxia on 3/30/14.
- */
+
 public class ListFragmentYo1 extends Fragment {
 
     public static final String EXTRA_TAB_NUM = "tabnumber";
